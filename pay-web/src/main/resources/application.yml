@@ -1,0 +1,18 @@
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:1001/eureka/
+
+spring:
+  application:
+    name: pay-web
+
+server:
+  port: 6001
+
+
+feign:
+#  httpclient:
+#    enabled: true
+  hystrix:
+    enabled: true

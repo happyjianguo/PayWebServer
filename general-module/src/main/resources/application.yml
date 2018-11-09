@@ -1,0 +1,11 @@
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:1001/eureka/
+
+spring:
+  application:
+    name: general-module
+
+server:
+  port: 7000
