@@ -27,7 +27,8 @@ public class HttpUtil {
 	@SuppressWarnings("unused")
 	public static String httpRequest(String requestUrl, Map<String, String> paramMap)
 			throws Exception {
-
+		System.out.println("http请求地址:"+requestUrl);
+		System.out.println("http请求报文:"+paramMap);
 		StringBuffer buffer = new StringBuffer();
 
 		try {
@@ -94,7 +95,7 @@ public class HttpUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("http返回报文:"+buffer.toString());
 		return buffer.toString();
 	}
 	
