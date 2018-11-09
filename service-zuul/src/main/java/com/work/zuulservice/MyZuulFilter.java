@@ -5,9 +5,7 @@ import com.netflix.zuul.context.RequestContext;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class MyZuulFilter extends ZuulFilter {
@@ -31,14 +29,15 @@ public class MyZuulFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        Map<String, String> map = new HashMap<>();
-        Enumeration enu=request.getParameterNames();
-        while(enu.hasMoreElements()){
-            String paraName=(String)enu.nextElement();
-            map.put(paraName,request.getParameter(paraName));
-//            System.out.println(paraName+": "+request.getParameter(paraName));
+        request.getParameterMap();
+        Map<String, List<String>> requestQueryParams = ctx.getRequestQueryParams();
+
+        if (requestQueryParams==null) {
+            requestQueryParams=new HashMap<>();
         }
-        request.setAttribute("general",map);
+
+        ctx.setRequestQueryParams(requestQueryParams);
+
         String url = String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString());
         System.out.println(url);
         Object accessToken = request.getParameter("token");

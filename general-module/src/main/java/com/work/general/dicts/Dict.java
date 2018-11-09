@@ -561,4 +561,6 @@ public class Dict {
 	public static final String origTxnAmt = "origTxnAmt";
 	/**优惠信息*/
 	public static final String offstDesc = "offstDesc";
+	/**公用参数*/
+	public static final String general = "general";
 }
