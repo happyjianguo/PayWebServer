@@ -3,6 +3,7 @@ package com.work.payweb.controller;
 import com.work.general.dicts.Dict;
 import com.work.payweb.service.AliService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +23,9 @@ public class PayWebController {
     }
 
     @RequestMapping(value="/prePay")
-    public String prePay(HttpServletRequest request){
-        String ss = request.getQueryString();
-        Map<String,String> map = (Map<String, String>) request.getAttribute(Dict.general);
-        System.out.println("aaaaaaa"+ss);
-        return aliService.prePay(map);
+    public String prePay(@RequestBody Map<String,String> param){
+        System.out.println("aaaaaaa"+param);
+        return aliService.prePay(param);
     }
 
 }
