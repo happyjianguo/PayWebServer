@@ -563,4 +563,5 @@ public class Dict {
 	public static final String offstDesc = "offstDesc";
 	/**公用参数*/
 	public static final String general = "general";
+    public static final String respContent = "respContent";
 }

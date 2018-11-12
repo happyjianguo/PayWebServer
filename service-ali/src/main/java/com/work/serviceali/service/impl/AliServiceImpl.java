@@ -94,6 +94,7 @@ public class AliServiceImpl extends PubClz implements AliService {
             needData.put(Dict.interfaceName, asdk_tradePrecreate);
 
             String returnMsg = ylAliPayService.aliSdk(data, needData); // 扫码支付
+            outputParam.putParam(Dict.respContent,returnMsg);
         } catch (Exception e) {
 
         } finally {

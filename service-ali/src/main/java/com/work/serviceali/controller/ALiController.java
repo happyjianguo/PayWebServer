@@ -6,6 +6,7 @@ import com.work.general.parameters.OutputParam;
 import com.work.general.pub.PubClz;
 import com.work.serviceali.service.AliService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,14 +33,13 @@ public class ALiController extends PubClz {
     }
 
     @RequestMapping(value = "/prePay")
-    public String prePay(Map<String,String> map) {
+    public String prePay(@RequestBody Map<String,String> map) {
+        System.out.println("支付宝请求报文:"+map);
         String outTradeNo = map.get(Dict.outTradeNo);
         String orderAmount = map.get(Dict.orderAmount);
         String subject = map.get(Dict.subject);
         String subMchId = map.get(Dict.subMchId);
         String body = map.get(Dict.body);
-        System.out.println("ali"+map.get("orderAmount"));
-        System.out.println("aliv"+map.get("subject"));
         InputParam inputParam = new InputParam();
         inputParam.putParam(Dict.outTradeNo, outTradeNo);
         inputParam.putParam(Dict.orderAmount, orderAmount);
@@ -47,7 +47,8 @@ public class ALiController extends PubClz {
         inputParam.putParam(Dict.subMchId, subMchId);
         inputParam.putParam(Dict.body, body);
         OutputParam outputParam = aliService.prePay(inputParam);
-        return "";
+        String respContent = outputParam.getParamsStr(Dict.respContent);
+        return respContent;
     }
 
 
