@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.work.generaldb.mapper.TblOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.work.generaldb.model.TblOrder" >
+    <id column="txn_seq_id" property="txnSeqId" jdbcType="VARCHAR" />
+    <result column="txn_time" property="txnTime" jdbcType="VARCHAR" />
+    <result column="out_number" property="outNumber" jdbcType="VARCHAR" />
+    <result column="out_time" property="outTime" jdbcType="VARCHAR" />
+    <result column="mer_id" property="merId" jdbcType="VARCHAR" />
+    <result column="sub_mer_id" property="subMerId" jdbcType="VARCHAR" />
+    <result column="order_amount" property="orderAmount" jdbcType="VARCHAR" />
+    <result column="pay_channel" property="payChannel" jdbcType="VARCHAR" />
+    <result column="oth_channel_number" property="othChannelNumber" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    txn_seq_id, txn_time, out_number, out_time, mer_id, sub_mer_id, order_amount, pay_channel, 
+    oth_channel_number, status, desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_order
+    where txn_seq_id = #{txnSeqId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_order
+    where txn_seq_id = #{txnSeqId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.work.generaldb.model.TblOrder" >
+    insert into tbl_order (txn_seq_id, txn_time, out_number, 
+      out_time, mer_id, sub_mer_id, 
+      order_amount, pay_channel, oth_channel_number, 
+      status, desc)
+    values (#{txnSeqId,jdbcType=VARCHAR}, #{txnTime,jdbcType=VARCHAR}, #{outNumber,jdbcType=VARCHAR}, 
+      #{outTime,jdbcType=VARCHAR}, #{merId,jdbcType=VARCHAR}, #{subMerId,jdbcType=VARCHAR}, 
+      #{orderAmount,jdbcType=VARCHAR}, #{payChannel,jdbcType=VARCHAR}, #{othChannelNumber,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.work.generaldb.model.TblOrder" >
+    insert into tbl_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="txnSeqId != null" >
+        txn_seq_id,
+      </if>
+      <if test="txnTime != null" >
+        txn_time,
+      </if>
+      <if test="outNumber != null" >
+        out_number,
+      </if>
+      <if test="outTime != null" >
+        out_time,
+      </if>
+      <if test="merId != null" >
+        mer_id,
+      </if>
+      <if test="subMerId != null" >
+        sub_mer_id,
+      </if>
+      <if test="orderAmount != null" >
+        order_amount,
+      </if>
+      <if test="payChannel != null" >
+        pay_channel,
+      </if>
+      <if test="othChannelNumber != null" >
+        oth_channel_number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="txnSeqId != null" >
+        #{txnSeqId,jdbcType=VARCHAR},
+      </if>
+      <if test="txnTime != null" >
+        #{txnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="outNumber != null" >
+        #{outNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="outTime != null" >
+        #{outTime,jdbcType=VARCHAR},
+      </if>
+      <if test="merId != null" >
+        #{merId,jdbcType=VARCHAR},
+      </if>
+      <if test="subMerId != null" >
+        #{subMerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null" >
+        #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="othChannelNumber != null" >
+        #{othChannelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.work.generaldb.model.TblOrder" >
+    update tbl_order
+    <set >
+      <if test="txnTime != null" >
+        txn_time = #{txnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="outNumber != null" >
+        out_number = #{outNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="outTime != null" >
+        out_time = #{outTime,jdbcType=VARCHAR},
+      </if>
+      <if test="merId != null" >
+        mer_id = #{merId,jdbcType=VARCHAR},
+      </if>
+      <if test="subMerId != null" >
+        sub_mer_id = #{subMerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        order_amount = #{orderAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null" >
+        pay_channel = #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="othChannelNumber != null" >
+        oth_channel_number = #{othChannelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where txn_seq_id = #{txnSeqId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.work.generaldb.model.TblOrder" >
+    update tbl_order
+    set txn_time = #{txnTime,jdbcType=VARCHAR},
+      out_number = #{outNumber,jdbcType=VARCHAR},
+      out_time = #{outTime,jdbcType=VARCHAR},
+      mer_id = #{merId,jdbcType=VARCHAR},
+      sub_mer_id = #{subMerId,jdbcType=VARCHAR},
+      order_amount = #{orderAmount,jdbcType=VARCHAR},
+      pay_channel = #{payChannel,jdbcType=VARCHAR},
+      oth_channel_number = #{othChannelNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR}
+    where txn_seq_id = #{txnSeqId,jdbcType=VARCHAR}
+  </update>
+</mapper>
