@@ -3,13 +3,8 @@ eureka:
         serviceUrl:
             defaultZone: http://localhost:1001/eureka/
 
-spring:
-  application:
-    name: pay-web
-
 server:
   port: 6001
-
 
 feign:
 #  httpclient:
@@ -18,6 +13,8 @@ feign:
     enabled: true
 
 spring:
+    application:
+        name: pay-web
     datasource:
         name: test
         url: jdbc:mysql://192.168.78.128:3306/mytest?useUnicode=true&characterEncoding=utf8
@@ -39,3 +36,14 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.work.generaldb.model
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

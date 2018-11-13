@@ -21,7 +21,7 @@ public class TblOrder {
 
     private String status;
 
-    private String desc;
+    private String msg;
 
     public String getTxnSeqId() {
         return txnSeqId;
@@ -103,11 +103,11 @@ public class TblOrder {
         this.status = status == null ? null : status.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setMsg(String msg) {
+        this.msg = msg == null ? null : msg.trim();
     }
 }
