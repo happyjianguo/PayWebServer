@@ -1,3 +1,6 @@
+server:
+  port: 5555
+
 spring:
     datasource:
         name: test
