@@ -95,8 +95,8 @@ public class AliServiceImpl extends PubClz implements AliService {
 
             String returnMsg = ylAliPayService.aliSdk(data, needData); // 扫码支付
             outputParam.putParam(Dict.respContent,returnMsg);
-            outputParam.setRetMsg("xiaoxi");
-            outputParam.setRetCode("999");
+            outputParam.setRetMsg("成功");
+            outputParam.setRetCode("success");
         } catch (Exception e) {
 
         } finally {

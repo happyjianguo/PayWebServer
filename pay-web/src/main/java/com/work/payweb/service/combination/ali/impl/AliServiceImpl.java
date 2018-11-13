@@ -40,8 +40,8 @@ public class AliServiceImpl implements AliService{
         InputParam inputParam = new InputParam();
         inputParam.setParams(map);
         OutputParam outputParam = aliMicroService.prePay(inputParam);
+        System.out.println(outputParam.toString());
 
-
-        return "ssss";
+        return outputParam.getParam(Dict.respContent);
     }
 }
