@@ -2,31 +2,28 @@ package com.work.general.parameters;
 
 import com.work.general.util.StringUtil;
 
+import java.util.Map;
+
 public class OutputParam extends CommonParam {
 
     private String retCode;
     private String retMsg;
 
     @Override
-    public void putParam(String key, Object value) {
+    public void putParam(String key, String value) {
         params.put(key, value);
     }
 
     @Override
-    public void putParamRmNull(String key, Object value) {
+    public void putParamRmNull(String key, String value) {
         if (!StringUtil.isEmpty(value)) {
             params.put(key, value);
         }
     }
 
     @Override
-    public Object getParam(String key) {
+    public String getParam(String key) {
         return params.get(key);
-    }
-
-    @Override
-    public String getParamsStr(String key) {
-        return StringUtil.toString(params.get(key));
     }
 
     public String getRetCode() {
@@ -45,6 +42,14 @@ public class OutputParam extends CommonParam {
         this.retMsg = retMsg;
     }
 
+    public Map<String, String> getParams() {
+        return params;
+    }
+
+    public void setParams(Map<String, String> params) {
+        this.params = params;
+    }
+
     @Override
     public String toString() {
         return "OutputParam{" +
@@ -53,4 +58,7 @@ public class OutputParam extends CommonParam {
                 ", params=" + params +
                 '}';
     }
+
+
+
 }

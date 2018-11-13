@@ -33,22 +33,21 @@ public class ALiController extends PubClz {
     }
 
     @RequestMapping(value = "/prePay")
-    public String prePay(@RequestBody Map<String,String> map) {
-        System.out.println("支付宝请求报文:"+map);
-        String outTradeNo = map.get(Dict.outTradeNo);
-        String orderAmount = map.get(Dict.orderAmount);
-        String subject = map.get(Dict.subject);
-        String subMchId = map.get(Dict.subMchId);
-        String body = map.get(Dict.body);
-        InputParam inputParam = new InputParam();
-        inputParam.putParam(Dict.outTradeNo, outTradeNo);
-        inputParam.putParam(Dict.orderAmount, orderAmount);
-        inputParam.putParam(Dict.subject, subject);
-        inputParam.putParam(Dict.subMchId, subMchId);
-        inputParam.putParam(Dict.body, body);
+    public OutputParam prePay(@RequestBody InputParam inputParam) {
+        System.out.println("支付宝请求报文:"+inputParam);
+//        String outTradeNo = inputParam.getParam(Dict.outTradeNo);
+//        String orderAmount = inputParam.getParam(Dict.orderAmount);
+//        String subject = inputParam.getParam(Dict.subject);
+//        String subMchId = inputParam.getParam(Dict.subMchId);
+//        String body = inputParam.getParam(Dict.body);
+//        InputParam inputPrePay = new InputParam();
+//        inputPrePay.putParam(Dict.outTradeNo, outTradeNo);
+//        inputPrePay.putParam(Dict.orderAmount, orderAmount);
+//        inputPrePay.putParam(Dict.subject, subject);
+//        inputPrePay.putParam(Dict.subMchId, subMchId);
+//        inputPrePay.putParam(Dict.body, body);
         OutputParam outputParam = aliService.prePay(inputParam);
-        String respContent = outputParam.getParamsStr(Dict.respContent);
-        return respContent;
+        return outputParam;
     }
 
 

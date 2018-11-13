@@ -1,23 +1,15 @@
 package com.work.payweb.controller;
 
-import com.work.general.util.StringUtil;
 import com.work.general.util.TransUtil;
-import com.work.payweb.service.AliService;
-import org.apache.commons.lang.StringUtils;
+import com.work.payweb.service.combination.ali.AliService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController

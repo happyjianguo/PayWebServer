@@ -51,6 +51,11 @@
 			<artifactId>general-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.work.generaldb</groupId>
+			<artifactId>general-db</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

@@ -6,14 +6,21 @@ import java.util.Map;
 
 public abstract class CommonParam {
 
-    protected Map<String, Object> params = new HashMap<String, Object>();
+    private static final long serialVersionUID = 1L;
 
-    protected abstract void putParam(String key, Object value);
+    protected Map<String, String> params = new HashMap<String, String>();
 
-    protected abstract void putParamRmNull(String key, Object value);
+    protected abstract void putParam(String key, String value);
 
-    protected abstract Object getParam(String key);
+    protected abstract void putParamRmNull(String key, String value);
 
-    protected abstract String getParamsStr(String key);
+    protected abstract String getParam(String key);
 
+    public Map<String, String> getParams() {
+        return params;
+    }
+
+    public void setParams(Map<String, String> params) {
+        this.params = params;
+    }
 }
