@@ -25,13 +25,13 @@ public class PayWebController extends PubClz{
         return aliService.microPay(params);
     }
 
-//    @TrackTime(param = "myService")
+    @TrackTime(param = "myService")
     @RequestMapping(value="/prePay")
     public String prePay(@RequestBody String body) throws UnsupportedEncodingException {
         logger.info("PayWebController.......");
         String bodyDecond = URLDecoder.decode(body, "UTF-8");
         Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
-        System.out.println(map);
+        logger.info(map.toString());
         return aliService.prePay(map);
     }
 

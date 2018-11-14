@@ -3,6 +3,7 @@ package com.work.payweb.service.combination.ali.impl;
 import com.work.general.dicts.Dict;
 import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
+import com.work.general.pub.PubClz;
 import com.work.general.util.DateUtil;
 import com.work.generaldb.model.TblOrder;
 import com.work.payweb.service.combination.ali.AliService;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class AliServiceImpl implements AliService{
+public class AliServiceImpl extends PubClz implements AliService{
 
     @Autowired
     OrderService orderService;
@@ -40,7 +41,7 @@ public class AliServiceImpl implements AliService{
         InputParam inputParam = new InputParam();
         inputParam.setParams(map);
         OutputParam outputParam = aliMicroService.prePay(inputParam);
-        System.out.println(outputParam.toString());
+        logger.info(outputParam.toString());
 
         return outputParam.getParam(Dict.respContent);
     }

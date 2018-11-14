@@ -25,9 +25,7 @@ public class WebLogAspect extends PubClz{
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-//    @Pointcut("execution(public * com.work.*.controller..*(..))")
-//    @Pointcut("execution(public * com.work.*.controller.PayWebController.*(..))")
-    @Pointcut("execution(* com.work..*.*(..))")
+    @Pointcut("execution(public * com.work.*.controller..*(..))")
     public void webLog(){}
 
     @Before("webLog()")
@@ -38,7 +36,6 @@ public class WebLogAspect extends PubClz{
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-        System.out.println("sdfsdfsdfsdfsdfsd");
         // 记录下请求内容
         logger.info("URL : " + request.getRequestURL().toString());
         logger.info("HTTP_METHOD : " + request.getMethod());

@@ -6,6 +6,9 @@ eureka:
 spring:
   application:
     name: service-ali
+  aop:
+    auto: true
+    proxy-target-class: true
 
 server:
   port: 7001
