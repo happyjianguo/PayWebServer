@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableEurekaClient
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.work."})
+@ComponentScan(basePackages = {"com.work.*"})
 public class ServiceAliApplication {
 
 	public static void main(String[] args) {
