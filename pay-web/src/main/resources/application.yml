@@ -36,6 +36,9 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    aop:
+      auto: true
+      proxy-target-class: true
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml
@@ -47,3 +50,5 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+
+

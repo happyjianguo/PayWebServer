@@ -1,5 +1,7 @@
 package com.work.payweb.controller;
 
+import com.work.general.annotations.TrackTime;
+import com.work.general.pub.PubClz;
 import com.work.general.util.TransUtil;
 import com.work.payweb.service.combination.ali.AliService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.net.URLDecoder;
 import java.util.Map;
 
 @RestController
-public class PayWebController {
+public class PayWebController extends PubClz{
 
     @Autowired
     AliService aliService;
@@ -23,8 +25,10 @@ public class PayWebController {
         return aliService.microPay(params);
     }
 
+//    @TrackTime(param = "myService")
     @RequestMapping(value="/prePay")
     public String prePay(@RequestBody String body) throws UnsupportedEncodingException {
+        logger.info("PayWebController.......");
         String bodyDecond = URLDecoder.decode(body, "UTF-8");
         Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
         System.out.println(map);
