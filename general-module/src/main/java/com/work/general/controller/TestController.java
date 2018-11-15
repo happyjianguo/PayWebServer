@@ -1,4 +1,4 @@
-package com.work.general.test;
+package com.work.general.controller;
 
 import com.work.general.annotations.TrackTime;
 import com.work.general.pub.PubClz;
@@ -6,8 +6,6 @@ import com.work.general.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.UnsupportedEncodingException;
 
 @RestController
 public class TestController extends PubClz{

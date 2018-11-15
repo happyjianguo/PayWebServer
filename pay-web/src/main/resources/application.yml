@@ -39,11 +39,24 @@ spring:
     aop:
       auto: true
       proxy-target-class: true
+    redis:
+        database: 0
+        host: 192.168.78.128
+        password:
+        pool:
+            max-active: 200
+            max-idle: 10
+            max-wait: 1
+            min-idle: 0
+        port: 6379
+        timeout: 1000
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.work.generaldb.model
-
+  #mybatis打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql
