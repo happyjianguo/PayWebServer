@@ -23,12 +23,6 @@ import org.xml.sax.SAXException;
 
 public class TransUtil {
 
-	/**
-	 * map集合转xml字符串
-	 * 
-	 * @param map
-	 * @return
-	 */
 	public static String mapToXml(Map<String, String> map) {
 		StringBuffer sb = new StringBuffer();
 		try {
@@ -50,25 +44,14 @@ public class TransUtil {
 		return sb.toString();
 	}
 
-	/**
-	 * 解析xml转map
-	 * 
-	 * @param xmlString
-	 * @return
-	 * @throws ParserConfigurationException
-	 * @throws IOException
-	 * @throws SAXException
-	 */
 	public static Map<String, String> xmlToMap(String xmlString)
 			throws Exception {
 
-		// 这里用Dom的方式解析回包的最主要目的是防止API新增回包字段
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		InputStream is = getStringStream(xmlString);
 		Document document = builder.parse(is);
 
-		// 获取到document里面的全部结点
 		NodeList allNodes = document.getFirstChild().getChildNodes();
 		Map<String, String> map = new HashMap<String, String>();
 		for (int i = 0; i < allNodes.getLength(); i++) {
@@ -91,7 +74,6 @@ public class TransUtil {
 
 	public static void nodeIterator(Node node, Map<String, String> map, int deep) {
 		if (deep > 2000) {
-			// 具体数值由虚拟机内存大小和每次递归堆栈大小决定，一般在2000次左右
 			deep = 2000;
 		}
 
@@ -111,26 +93,12 @@ public class TransUtil {
 		}
 	}
 
-	/**
-	 * json string 转换为 map 对象
-	 * @param jsonObj
-	 * @return
-	 */
 	public static Map<String, String> jsonToMap(String jsonObj) {
 		JSONObject jsonObject = JSONObject.fromObject(jsonObj);
 		return (Map<String, String>)jsonObject;
 	}
 
 	public static void main(String[] args) {
-		String ss = "<xml><remark>&amp;＃55357;&amp;＃56351;</remark></xml>";
-//		String ss = "<xml><remark>&＃55357;&＃56351;</remark></xml>";
-//		String ss = "<xml><remark>sdfsdfs</remark></xml>";
-		try {
-//			Map<String, String> map = TransUtil.stringToMap("{orderAmount=0.01, subject=扫码测试商品, outTradeNo=20181112153510, subMchId=2088000203474835, body=扫码测试商品}");
-//			System.out.println(map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }
