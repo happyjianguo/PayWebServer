@@ -28,7 +28,7 @@ public class PayWebController extends PubClz{
     @TrackTime(param = "myService")
     @RequestMapping(value="/prePay")
     public String prePay(@RequestBody String body) throws UnsupportedEncodingException {
-        logger.info("PayWebController.......");
+        logger.info("进入PayWebController.......");
         String bodyDecond = URLDecoder.decode(body, "UTF-8");
         Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
         logger.info(map.toString());
