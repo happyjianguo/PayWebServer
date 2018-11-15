@@ -50,5 +50,12 @@ public class ALiController extends PubClz {
         return outputParam;
     }
 
+    @RequestMapping(value = "/createMer")
+    public OutputParam createMer(@RequestBody InputParam inputParam) {
+        System.out.println("支付宝新增商户请求报文:"+inputParam);
+        OutputParam outputParam = aliService.createMer(inputParam);
+        return outputParam;
+    }
+
 
 }

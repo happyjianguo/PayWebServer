@@ -31,7 +31,7 @@ public class PayWebController extends PubClz{
         return aliService.microPay(params);
     }
 
-    @TrackTime(param = "myService")
+    @TrackTime(param = "支付宝扫码交易")
     @RequestMapping(value="/prePay")
     public String prePay(@RequestBody String body) throws UnsupportedEncodingException {
         logger.info("进入PayWebController.......");
@@ -50,36 +50,13 @@ public class PayWebController extends PubClz{
         return aliService.prePay(map);
     }
 
-//    @RequestMapping(value="/prePay")
-//    public String prePay(@RequestBody Map<String,String> param){
-//        System.out.println("aaaaaaa"+param);
-//        return aliService.prePay(param);
-//    }
-//    @RequestMapping(value="/prePay")
-//    public String prePay(HttpServletRequest request,@RequestBody String body11) throws UnsupportedEncodingException {
-////    public String prePay(HttpServletRequest request){
-//        System.out.println("ssssssss:"+request.getParameter("orderAmount"));
-////               System.out.println("123123");
-////        System.out.println("body:"+body11);
-////        String body1 = null;
-////        try {
-//            System.out.println("body:" + URLDecoder.decode(body11, "UTF-8"));
-////            InputStream in = request.getInputStream();
-////            body1 = StreamUtils.copyToString(in, Charset.forName("UTF-8"));
-////            System.out.println("sdf"+body1);
-////            System.out.println("sdf1"+request.getMethod());
-////            System.out.println("sdf2"+request.getQueryString());
-////            System.out.println("sdf3"+request.getParameter("userId"));
-////        } catch (IOException e) {
-////            e.printStackTrace();
-////        }
-//
-////        if(StringUtils.isNotBlank(body)){
-////            JSONObject jsonObject = JSON.parseObject(body);
-////            Object userId = jsonObject.get("userId");
-////        }
-//        Map<String, String> map = new HashMap<>();
-//        return aliService.prePay(map);
-//    }
+    @TrackTime(param = "支付宝新增商")
+    @RequestMapping(value="/createMer")
+    public String createMer(@RequestBody String body) throws UnsupportedEncodingException {
+        String bodyDecond = URLDecoder.decode(body, "UTF-8");
+        Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
+        return aliService.createMer(map);
+    }
+
 
 }

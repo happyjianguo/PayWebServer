@@ -152,4 +152,6 @@ public class Dict {
     public static final String outTradeNo = "outTradeNo";
 	public static final String subject = "subject";
 	public static final String body = "body";
+    public static final String prePay = "prePay";
+	public static final String createMer = "createMer";
 }

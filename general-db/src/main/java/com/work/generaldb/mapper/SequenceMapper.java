@@ -5,8 +5,7 @@ import org.apache.ibatis.annotations.Select;
 
 public interface SequenceMapper {
 
-//    @Select("SELECT NEXTVAL('#{seqName}'); ")
-    @Select("SELECT NEXTVAL('OrderSeq'); ")
+    @Select("SELECT NEXTVAL(#{seqName}) ")
     String getSeqNextVal(String seqName);
 
 }

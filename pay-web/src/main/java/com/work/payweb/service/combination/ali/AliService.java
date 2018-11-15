@@ -8,4 +8,5 @@ public interface AliService {
 
     String prePay(Map<String,String> map);
 
+    String createMer(Map<String, String> map);
 }

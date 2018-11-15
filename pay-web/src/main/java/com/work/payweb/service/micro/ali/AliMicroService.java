@@ -15,4 +15,6 @@ public interface AliMicroService {
     @RequestMapping(value = "/prePay")
     OutputParam prePay(InputParam inputParam);
 
+    @RequestMapping(value = "/createMer")
+    OutputParam createMer(InputParam inputParam);
 }

@@ -22,4 +22,11 @@ public class AliServiceHystric implements AliMicroService{
         return outputParam;
     }
 
+    @Override
+    public OutputParam createMer(InputParam inputParam) {
+        OutputParam outputParam = new OutputParam();
+        outputParam.setRetMsg("ali createMer service is not available !");
+        return outputParam;
+    }
+
 }

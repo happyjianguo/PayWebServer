@@ -16,7 +16,7 @@ public class TrackTimeAspect extends PubClz{
         long startTime = System.currentTimeMillis();
         result = joinPoint.proceed();
         long timeTaken = System.currentTimeMillis() - startTime;
-        logger.info(" -------------> 水电费Time Taken by " + joinPoint + " with param[" + trackTime.param() + "] is " + timeTaken);
+        logger.info(" -------------> Time Taken by " + joinPoint + " with param[" + trackTime.param() + "] is " + timeTaken);
         return result;
     }
 }

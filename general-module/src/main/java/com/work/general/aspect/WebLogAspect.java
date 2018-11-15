@@ -49,7 +49,7 @@ public class WebLogAspect extends PubClz{
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容
         logger.info("RESPONSE : " + ret);
-        logger.info("SPEND TIME : " + (System.currentTimeMillis() - startTime.get()));
+//        logger.info("SPEND TIME : " + (System.currentTimeMillis() - startTime.get()));
     }
 
 
