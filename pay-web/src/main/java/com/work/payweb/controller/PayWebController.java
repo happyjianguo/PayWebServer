@@ -37,12 +37,12 @@ public class PayWebController extends PubClz{
         logger.info("进入PayWebController.......");
 
         redisStringUtil.set("ssss1","asdf1");
-        Object obj = redisStringUtil.get("ssss1");
-        logger.info("obj:"+obj);
-
-        redisUtil.set("sd", "sdf");
-        Object obj1 = redisUtil.get("sd");
-        logger.info("obj1:"+obj1);
+//        Object obj = redisStringUtil.get("ssss1");
+//        logger.info("obj:"+obj);
+//
+//        redisUtil.set("sd", "sdf");
+//        Object obj1 = redisUtil.get("sd");
+//        logger.info("obj1:"+obj1);
 
         String bodyDecond = URLDecoder.decode(body, "UTF-8");
         Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));

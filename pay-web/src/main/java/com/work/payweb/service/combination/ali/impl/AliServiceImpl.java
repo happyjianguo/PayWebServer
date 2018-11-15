@@ -5,10 +5,12 @@ import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
 import com.work.general.pub.PubClz;
 import com.work.general.util.DateUtil;
+import com.work.generaldb.mapper.SequenceMapper;
 import com.work.generaldb.model.TblOrder;
 import com.work.payweb.service.combination.ali.AliService;
 import com.work.payweb.service.micro.ali.AliMicroService;
 import com.work.payweb.service.micro.db.OrderService;
+import com.work.payweb.service.micro.db.SeqService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ public class AliServiceImpl extends PubClz implements AliService{
 
     @Autowired
     OrderService orderService;
+    @Autowired
+    SeqService seqService;
     @Autowired
     AliMicroService aliMicroService;
 
@@ -32,8 +36,8 @@ public class AliServiceImpl extends PubClz implements AliService{
     @Override
     public String prePay(Map<String, String> map) {
         TblOrder tblOrder = new TblOrder();
-//        tblOrder.setTxnSeqId(map.get(Dict.outTradeNo));
-        tblOrder.setTxnSeqId(DateUtil.getDateHHMMSS());
+        tblOrder.setTxnSeqId(seqService.getSeqNextVal("OrderSeq"));
+//        tblOrder.setTxnSeqId(DateUtil.getDateHHMMSS());
         tblOrder.setOrderAmount(map.get(Dict.orderAmount));
         tblOrder.setOutNumber(map.get(Dict.outTradeNo));
         tblOrder.setPayChannel("ALI");

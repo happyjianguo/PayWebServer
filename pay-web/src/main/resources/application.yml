@@ -57,6 +57,7 @@ mybatis:
   #mybatis打印sql
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql
