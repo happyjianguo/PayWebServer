@@ -7,15 +7,14 @@
     <result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
     <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
     <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
-    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="channel" property="channel" jdbcType="VARCHAR" />
     <result column="sub_mer_id" property="subMerId" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    mer_id, name, alias_name, contact_name, contact_phone, id_card, address, channel, 
-    sub_mer_id, create_time
+    mer_id, name, alias_name, contact_name, contact_phone, address, channel, sub_mer_id, 
+    create_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -29,13 +28,13 @@
   </delete>
   <insert id="insert" parameterType="com.work.generaldb.model.TblMerchant" >
     insert into tbl_merchant (mer_id, name, alias_name, 
-      contact_name, contact_phone, id_card, 
-      address, channel, sub_mer_id, 
-      create_time)
+      contact_name, contact_phone, address, 
+      channel, sub_mer_id, create_time
+      )
     values (#{merId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{aliasName,jdbcType=VARCHAR}, 
-      #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{subMerId,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=VARCHAR})
+      #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{subMerId,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.work.generaldb.model.TblMerchant" >
     insert into tbl_merchant
@@ -54,9 +53,6 @@
       </if>
       <if test="contactPhone != null" >
         contact_phone,
-      </if>
-      <if test="idCard != null" >
-        id_card,
       </if>
       <if test="address != null" >
         address,
@@ -87,9 +83,6 @@
       <if test="contactPhone != null" >
         #{contactPhone,jdbcType=VARCHAR},
       </if>
-      <if test="idCard != null" >
-        #{idCard,jdbcType=VARCHAR},
-      </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
@@ -119,9 +112,6 @@
       <if test="contactPhone != null" >
         contact_phone = #{contactPhone,jdbcType=VARCHAR},
       </if>
-      <if test="idCard != null" >
-        id_card = #{idCard,jdbcType=VARCHAR},
-      </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
@@ -143,7 +133,6 @@
       alias_name = #{aliasName,jdbcType=VARCHAR},
       contact_name = #{contactName,jdbcType=VARCHAR},
       contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      id_card = #{idCard,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       channel = #{channel,jdbcType=VARCHAR},
       sub_mer_id = #{subMerId,jdbcType=VARCHAR},

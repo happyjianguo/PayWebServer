@@ -4,6 +4,7 @@ import com.work.generaldb.mapper.TblMerchantMapper;
 import com.work.generaldb.model.TblMerchant;
 import com.work.payweb.service.micro.db.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +16,10 @@ public class MerchantServiceImpl implements MerchantService {
     public boolean insertMerchant(TblMerchant tblMerchant) {
         int num = tblMerchantMapper.insert(tblMerchant);
         return num == 1;
+    }
+
+    @Override
+    public TblMerchant queryMerchant(String key) {
+        return tblMerchantMapper.selectByPrimaryKey(key);
     }
 }

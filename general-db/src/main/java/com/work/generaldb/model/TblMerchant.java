@@ -11,8 +11,6 @@ public class TblMerchant {
 
     private String contactPhone;
 
-    private String idCard;
-
     private String address;
 
     private String channel;
@@ -61,14 +59,6 @@ public class TblMerchant {
         this.contactPhone = contactPhone == null ? null : contactPhone.trim();
     }
 
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard == null ? null : idCard.trim();
-    }
-
     public String getAddress() {
         return address;
     }
@@ -99,5 +89,20 @@ public class TblMerchant {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TblMerchant{" +
+                "merId='" + merId + '\'' +
+                ", name='" + name + '\'' +
+                ", aliasName='" + aliasName + '\'' +
+                ", contactName='" + contactName + '\'' +
+                ", contactPhone='" + contactPhone + '\'' +
+                ", address='" + address + '\'' +
+                ", channel='" + channel + '\'' +
+                ", subMerId='" + subMerId + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
     }
 }

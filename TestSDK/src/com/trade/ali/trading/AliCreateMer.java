@@ -14,11 +14,9 @@ public class AliCreateMer {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", "aa81009041035");
 		map.put("aliasName", "aa81009041035");
-		map.put("servicePhone", "15661219999");
-		map.put("contactName", "testaa");
-		map.put("idCardNo", "6228580107000000861");
-		map.put("categoryId", "2016042200000148");
-		map.put("address", "sssssssssssssssssssssssssssss");
+		map.put("servicePhone", "15959999999");
+		map.put("contactName", "奥巴马");
+		map.put("address", "鄞州区政府");
 		map.put("mcc", "5331");
 		map.put("orgPid", "2088721382101609");
 

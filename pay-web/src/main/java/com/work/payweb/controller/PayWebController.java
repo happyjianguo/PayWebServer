@@ -50,7 +50,7 @@ public class PayWebController extends PubClz{
         return aliService.prePay(map);
     }
 
-    @TrackTime(param = "支付宝新增商")
+    @TrackTime(param = "支付宝新增商户")
     @RequestMapping(value="/createMer")
     public String createMer(@RequestBody String body) throws UnsupportedEncodingException {
         String bodyDecond = URLDecoder.decode(body, "UTF-8");
@@ -59,4 +59,11 @@ public class PayWebController extends PubClz{
     }
 
 
+    @TrackTime(param = "支付宝商户查询")
+    @RequestMapping(value="/queryMer")
+    public String queryMer(@RequestBody String body) throws UnsupportedEncodingException {
+        String bodyDecond = URLDecoder.decode(body, "UTF-8");
+        Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
+        return aliService.queryMer(map);
+    }
 }
