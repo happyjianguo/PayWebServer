@@ -17,7 +17,7 @@ spring:
         name: pay-web
     datasource:
         name: test
-        url: jdbc:mysql://192.168.78.128:3306/mytest?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://192.168.137.81:3306/mytest?useUnicode=true&characterEncoding=utf8
         username: root
         password: 123
         # 使用druid数据源
@@ -41,7 +41,7 @@ spring:
       proxy-target-class: true
     redis:
         database: 0
-        host: 192.168.78.128
+        host: 192.168.137.81
         password:
         pool:
             max-active: 200
