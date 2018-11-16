@@ -1,6 +1,10 @@
 package com.work.generaldb.model;
 
-public class TblMerchant {
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+
+import java.io.Serializable;
+
+public class TblMerchant implements Serializable {
     private String merId;
 
     private String name;

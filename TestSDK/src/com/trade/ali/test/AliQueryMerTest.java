@@ -16,7 +16,9 @@ public class AliQueryMerTest {
 	@Test
 	public void SocketReq() throws Exception {
 
+
 		Map<String,String> mapAliQueryMer = AliQueryMer.getData();
+		mapAliQueryMer.put("merId", "900201811161000022");
 		HttpUtil.httpRequest(PropertyUtil.getProperty(Dict.queryMer),mapAliQueryMer);
 	}
 	

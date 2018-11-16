@@ -18,6 +18,7 @@ public class MerchantServiceImpl implements MerchantService {
         return num == 1;
     }
 
+    @Cacheable(value = "merchant", key = "#key")
     @Override
     public TblMerchant queryMerchant(String key) {
         return tblMerchantMapper.selectByPrimaryKey(key);
