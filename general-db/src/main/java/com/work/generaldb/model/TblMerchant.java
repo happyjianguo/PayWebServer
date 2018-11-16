@@ -1,6 +1,5 @@
 package com.work.generaldb.model;
 
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 
 import java.io.Serializable;
 
