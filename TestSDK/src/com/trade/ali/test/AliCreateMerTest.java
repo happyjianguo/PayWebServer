@@ -17,7 +17,6 @@ public class AliCreateMerTest {
 		Map<String,String> mapAliCreateMer = AliCreateMer.getData();
 		HttpUtil.httpRequest(PropertyUtil.getProperty(Dict.createMer),mapAliCreateMer);
 
-
 	}
 	
 }

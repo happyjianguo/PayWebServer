@@ -155,4 +155,7 @@ public class Dict {
     public static final String prePay = "prePay";
 	public static final String createMer = "createMer";
     public static final String queryMer = "queryMer";
+    public static final String address = "address";
+	public static final String editMer = "editMer";
+    public static final String deleteMer = "deleteMer";
 }

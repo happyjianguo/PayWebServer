@@ -15,3 +15,7 @@ zuul:
     feign:
       path: /pay-web/**
       serviceId: pay-web
+
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeOut: 10000

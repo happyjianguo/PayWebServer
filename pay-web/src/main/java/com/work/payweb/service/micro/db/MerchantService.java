@@ -8,5 +8,7 @@ public interface MerchantService {
 
     TblMerchant queryMerchant(String key);
 
+    boolean deleteMerchant(String key);
 
+    TblMerchant updateMerchant(TblMerchant tblMerchant);
 }

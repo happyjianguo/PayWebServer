@@ -16,7 +16,6 @@ public class AliPreCreateTest {
 		//Ö÷É¨
 		Map<String,String> mapAliPreCreate = AliPreCreate.getData();
 		HttpUtil.httpRequest(PropertyUtil.getProperty(Dict.prePay),mapAliPreCreate);
-//		HttpUtil.postJson(PropertyUtil.getProperty(Dict.socket_ip),"{'age':'123','name':'ssss'}");
 
 
 	}

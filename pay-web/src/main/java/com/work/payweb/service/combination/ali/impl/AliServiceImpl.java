@@ -5,6 +5,7 @@ import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
 import com.work.general.pub.PubClz;
 import com.work.general.util.DateUtil;
+import com.work.general.util.TransUtil;
 import com.work.generaldb.constants.DbConstants;
 import com.work.generaldb.mapper.SequenceMapper;
 import com.work.generaldb.model.TblMerchant;
@@ -60,24 +61,25 @@ public class AliServiceImpl extends PubClz implements AliService{
 
     @Override
     public String createMer(Map<String, String> map) {
-
+        logger.info("商户新增请求报文:"+map.toString());
         String seq = seqService.getSeqNextVal(DbConstants.SEQ.MerchantSeq);
         String merId = "900" + DateUtil.getDateYYYYMMDD() + seq;
 
         map.put(Dict.merId, merId);
         InputParam inputParam = new InputParam();
         inputParam.setParams(map);
+        inputParam.putParam(Dict.orgPid,"2088721382101609");
         OutputParam outputParam = aliMicroService.createMer(inputParam);
         String subMerId = outputParam.getParam(Dict.subMerId);
 
         //商户入库
         TblMerchant tblMerchant = new TblMerchant();
         tblMerchant.setMerId(merId);
-        tblMerchant.setName("美的你"+seq);
-        tblMerchant.setAliasName("美的你"+seq);
-        tblMerchant.setContactName("奥巴马");
-        tblMerchant.setContactPhone("15959999999");
-        tblMerchant.setAddress("鄞州区政府");
+        tblMerchant.setName(map.get(Dict.name));
+        tblMerchant.setAliasName(map.get(Dict.aliasName));
+        tblMerchant.setContactName(map.get(Dict.contactName));
+        tblMerchant.setContactPhone(map.get(Dict.servicePhone));
+        tblMerchant.setAddress(map.get(Dict.address));
         tblMerchant.setChannel("ALI");
         tblMerchant.setSubMerId(subMerId);
         tblMerchant.setCreateTime(DateUtil.getDateStr(DateUtil.YYYYMMDDHHMMSS));
@@ -91,5 +93,27 @@ public class AliServiceImpl extends PubClz implements AliService{
         String merId = map.get(Dict.merId);
         TblMerchant tblMerchant = merchantService.queryMerchant(merId);
         return tblMerchant.toString();
+    }
+
+    @Override
+    public boolean deleteMer(Map<String, String> map) {
+        String merId = map.get(Dict.merId);
+        return merchantService.deleteMerchant(merId);
+    }
+
+    @Override
+    public boolean updateMer(Map<String, String> map) {
+        TblMerchant tblMerchant = null;
+        try {
+            tblMerchant = (TblMerchant)TransUtil.mapToObject(map, TblMerchant.class);
+            TblMerchant tblMerchantUpd = merchantService.updateMerchant(tblMerchant);
+            if (tblMerchantUpd != null) {
+                logger.info("更新成功:"+tblMerchantUpd.toString());
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

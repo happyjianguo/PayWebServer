@@ -11,4 +11,9 @@ public interface AliService {
     String createMer(Map<String, String> map);
 
     String queryMer(Map<String, String> map);
+
+    boolean deleteMer(Map<String, String> map);
+
+    boolean updateMer(Map<String, String> map);
+
 }
