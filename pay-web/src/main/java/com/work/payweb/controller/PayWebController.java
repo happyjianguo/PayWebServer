@@ -34,19 +34,16 @@ public class PayWebController extends PubClz{
     @TrackTime(param = "支付宝扫码交易")
     @RequestMapping(value="/prePay")
     public String prePay(@RequestBody String body) throws UnsupportedEncodingException {
-        logger.info("进入PayWebController.......");
-
-        redisStringUtil.set("ssss1","asdf1");
-//        Object obj = redisStringUtil.get("ssss1");
-//        logger.info("obj:"+obj);
-//
-//        redisUtil.set("sd", "sdf");
-//        Object obj1 = redisUtil.get("sd");
-//        logger.info("obj1:"+obj1);
-
         String bodyDecond = URLDecoder.decode(body, "UTF-8");
         Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
-        logger.info(map.toString());
+        return aliService.prePay(map);
+    }
+
+    @TrackTime(param = "支付宝扫码交易")
+    @RequestMapping(value="/orderQuery")
+    public String orderQuery(@RequestBody String body) throws UnsupportedEncodingException {
+        String bodyDecond = URLDecoder.decode(body, "UTF-8");
+        Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
         return aliService.prePay(map);
     }
 

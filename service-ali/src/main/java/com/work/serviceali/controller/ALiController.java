@@ -33,20 +33,10 @@ public class ALiController extends PubClz {
         return "";
     }
 
+    @TrackTime(param = "支付宝服务扫码交易")
     @RequestMapping(value = "/prePay")
     public OutputParam prePay(@RequestBody InputParam inputParam) {
-        System.out.println("支付宝请求报文:"+inputParam);
-//        String outTradeNo = inputParam.getParam(Dict.outTradeNo);
-//        String orderAmount = inputParam.getParam(Dict.orderAmount);
-//        String subject = inputParam.getParam(Dict.subject);
-//        String subMchId = inputParam.getParam(Dict.subMchId);
-//        String body = inputParam.getParam(Dict.body);
-//        InputParam inputPrePay = new InputParam();
-//        inputPrePay.putParam(Dict.outTradeNo, outTradeNo);
-//        inputPrePay.putParam(Dict.orderAmount, orderAmount);
-//        inputPrePay.putParam(Dict.subject, subject);
-//        inputPrePay.putParam(Dict.subMchId, subMchId);
-//        inputPrePay.putParam(Dict.body, body);
+        logger.info("支付宝扫码交易请求报文:"+inputParam);
         OutputParam outputParam = aliService.prePay(inputParam);
         return outputParam;
     }

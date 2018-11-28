@@ -1,10 +1,12 @@
 package com.work.payweb.service.combination.ali.impl;
 
+import com.work.general.constants.StringConstans;
 import com.work.general.dicts.Dict;
 import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
 import com.work.general.pub.PubClz;
 import com.work.general.util.DateUtil;
+import com.work.general.util.StringUtil;
 import com.work.general.util.TransUtil;
 import com.work.generaldb.constants.DbConstants;
 import com.work.generaldb.mapper.SequenceMapper;
@@ -42,15 +44,20 @@ public class AliServiceImpl extends PubClz implements AliService{
 
     @Override
     public String prePay(Map<String, String> map) {
-
+        logger.info("支付宝扫码请求报文:"+map.toString());
         //订单入库
         TblOrder tblOrder = new TblOrder();
         tblOrder.setTxnSeqId(seqService.getSeqNextVal(DbConstants.SEQ.OrderSeq));
+        tblOrder.setTxnTime(DateUtil.getDateStr(DateUtil.YYYYMMDDHHMMSS));
         tblOrder.setOrderAmount(map.get(Dict.orderAmount));
         tblOrder.setOutNumber(map.get(Dict.outTradeNo));
         tblOrder.setPayChannel("ALI");
+        tblOrder.setSubMerId(map.get(Dict.subMchId));
+        tblOrder.setStatus(StringConstans.ORDER_STATUS.STATUS_01);
+        tblOrder.setMsg("订单初始化");
         orderService.insertOrder(tblOrder);
 
+        //去支付宝生成二维码
         InputParam inputParam = new InputParam();
         inputParam.setParams(map);
         OutputParam outputParam = aliMicroService.prePay(inputParam);
@@ -71,6 +78,10 @@ public class AliServiceImpl extends PubClz implements AliService{
         inputParam.putParam(Dict.orgPid,"2088721382101609");
         OutputParam outputParam = aliMicroService.createMer(inputParam);
         String subMerId = outputParam.getParam(Dict.subMerId);
+
+        if (StringUtil.isEmpty(subMerId)) {
+            return "支付宝模块未返回有效参数";
+        }
 
         //商户入库
         TblMerchant tblMerchant = new TblMerchant();
