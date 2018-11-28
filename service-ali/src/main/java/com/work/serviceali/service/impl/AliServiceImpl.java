@@ -5,6 +5,7 @@ import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
 import com.work.general.pub.PubClz;
 import com.work.general.util.StringUtil;
+import com.work.serviceali.property.AliConfig;
 import com.work.serviceali.service.AliService;
 import com.work.serviceali.service.YLAliPayService;
 import net.sf.json.JSONArray;
@@ -20,15 +21,8 @@ public class AliServiceImpl extends PubClz implements AliService {
 
     @Autowired
     YLAliPayService ylAliPayService;
-
-    @Value("${asdk.tradePay}")
-    String asdk_tradePay;
-    @Value("${asdk.tradePrecreate}")
-    String asdk_tradePrecreate;
-    @Value("${asdk.indirectCreate}")
-    String asdk_indirectCreate;
-    @Value("${asdk.merid}")
-    String asdk_merid;
+    @Autowired
+    AliConfig aliConfig;
 
     @Override
     public OutputParam microPay(InputParam input) {
@@ -96,7 +90,7 @@ public class AliServiceImpl extends PubClz implements AliService {
             data.put("timeout_express", "5m");
 
             Map<String, String> needData = new HashMap<String, String>();
-            needData.put(Dict.interfaceName, asdk_tradePrecreate);
+            needData.put(Dict.interfaceName, aliConfig.getTradePrecreate());
 
             String returnMsg = ylAliPayService.aliSdk(data, needData); // 扫码支付
 
@@ -132,7 +126,7 @@ public class AliServiceImpl extends PubClz implements AliService {
             data.put("alias_name", aliasName); // 商户简称
             data.put("service_phone", servicePhone); // 商户客服电话
             data.put("category_id", categoryId); // 商户经营类目
-            data.put("source", asdk_merid); // 商户来源机构标识，填写机构在支付宝的pid
+            data.put("source", aliConfig.getMerid()); // 商户来源机构标识，填写机构在支付宝的pid
             data.put("org_pid", orgPid);
             data.put("mcc", mcc);
             // 商户联系人信息
@@ -163,7 +157,7 @@ public class AliServiceImpl extends PubClz implements AliService {
             data.put("memo", merId); // 商户备注信息，可填写额外信息
 
             Map<String, String> needData = new HashMap<String, String>();
-            needData.put(Dict.interfaceName, asdk_indirectCreate);
+            needData.put(Dict.interfaceName, aliConfig.getIndirectCreate());
 
             String returnMsg = ylAliPayService.aliSdk(data, needData); // 商户入驻
             JSONObject jsonObject = JSONObject.fromObject(returnMsg);

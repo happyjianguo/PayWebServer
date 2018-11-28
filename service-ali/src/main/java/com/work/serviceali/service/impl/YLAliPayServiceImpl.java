@@ -5,9 +5,11 @@ import com.work.general.pub.PubClz;
 import com.work.serviceali.common.AliPayConstants;
 import com.work.serviceali.common.AliPayRequest;
 import com.work.serviceali.common.AliPayUtil;
+import com.work.serviceali.property.AliConfig;
 import com.work.serviceali.service.YLAliPayService;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +21,8 @@ import java.util.Map;
 @Service
 public class YLAliPayServiceImpl extends PubClz implements YLAliPayService {
 
-    @Value("${asdk.appid}")
-    String ALI_APPID;
-    @Value("${asdk.privateKey}")
-    String ALI_PRIVATE_KEY;
-    @Value("${asdk.publicKey}")
-    String ALI_PUBLIC_KEY;
-    @Value("${asdk.frontTransUrl}")
-    String ALI_FRONT_TRANS_URL;
+    @Autowired
+    AliConfig aliConfig;
 
 
     /**
@@ -42,20 +38,20 @@ public class YLAliPayServiceImpl extends PubClz implements YLAliPayService {
         Map<String, String> reqContent = new HashMap<String, String>();
         JSONObject fromObject = JSONObject.fromObject(reqData);
         reqContent.put("biz_content", fromObject.toString()); // 请求参数的集合
-        reqContent.put("app_id", ALI_APPID); // 支付宝分配给开发者的应用ID
+        reqContent.put("app_id", aliConfig.getAppid()); // 支付宝分配给开发者的应用ID
         reqContent.put("method", method); // 接口名称
         reqContent.put("charset", AliPayConstants.CHARSET_UTF_8); // 请求使用的编码格式
         reqContent.put("sign_type", "RSA2");
         reqContent.put("timestamp", AliPayUtil.toDate(new Date())); // 发送请求的时间，格式"yyyy-MM-dd HH:mm:ss
         reqContent.put("version", AliPayConstants.VERSION); // 调用的接口版本，固定为：1.0
-        reqContent.put("sign", AliPayUtil.generateSignature(reqContent, ALI_PRIVATE_KEY));
+        reqContent.put("sign", AliPayUtil.generateSignature(reqContent, aliConfig.getPrivateKey()));
         return reqContent;
     }
 
 
     public String aliSdk(Map<String, Object> reqData, Map<String, String> needData) throws Exception {
         Map<String, String> map = this.fillRequestData(reqData, needData);
-        String url = ALI_FRONT_TRANS_URL;
+        String url = aliConfig.getFrontTransUrl();
         String resp = this.post(map, url, AliPayConstants.CHARSET_UTF_8);
         String methodName = (String) map.get("method");
         return this.processResponse(methodName, resp);
@@ -106,7 +102,7 @@ public class YLAliPayServiceImpl extends PubClz implements YLAliPayService {
         if (StringUtils.isBlank(sign)) {
             return false;
         }
-        return AliPayUtil.rsa256CheckContent(content, sign, ALI_PUBLIC_KEY);
+        return AliPayUtil.rsa256CheckContent(content, sign, aliConfig.getPublicKey());
     }
 
 
