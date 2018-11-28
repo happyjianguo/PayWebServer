@@ -64,7 +64,6 @@ public class MyZuulFilter extends ZuulFilter {
                     json.put(paraName, request.getParameter(paraName));
                 }
 
-                System.out.println(json);
                 final byte[] reqBodyBytes = json.toString().getBytes("UTF-8");
                 ctx.setRequest(new HttpServletRequestWrapper(request) {
                     @Override

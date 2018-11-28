@@ -20,6 +20,7 @@ import com.work.payweb.service.micro.db.SeqService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Map;
@@ -41,7 +42,6 @@ public class AliServiceImpl extends PubClz implements AliService{
     public String microPay(String params) {
         return null;
     }
-
 
     @Override
     public String prePay(Map<String, String> map) {
@@ -131,6 +131,7 @@ public class AliServiceImpl extends PubClz implements AliService{
         return false;
     }
 
+    @Transactional
     @Override
     public String orderQuery(Map<String, String> map) {
         logger.info("支付宝订单查询请求报文:"+map.toString());
