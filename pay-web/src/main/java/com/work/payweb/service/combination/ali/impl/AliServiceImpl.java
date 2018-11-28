@@ -66,7 +66,7 @@ public class AliServiceImpl extends PubClz implements AliService{
         OutputParam outputParam = aliMicroService.prePay(inputParam);
         logger.info(outputParam.toString());
 
-        return outputParam.getParam(Dict.respContent);
+        return outputParam.toString();
     }
 
     @Override
