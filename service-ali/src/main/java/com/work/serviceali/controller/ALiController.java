@@ -1,5 +1,6 @@
 package com.work.serviceali.controller;
 
+import com.work.general.annotations.TrackTime;
 import com.work.general.dicts.Dict;
 import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
@@ -50,9 +51,10 @@ public class ALiController extends PubClz {
         return outputParam;
     }
 
+    @TrackTime(param = "支付宝服务商户新增")
     @RequestMapping(value = "/createMer")
     public OutputParam createMer(@RequestBody InputParam inputParam) {
-        System.out.println("支付宝新增商户请求报文:"+inputParam);
+        logger.info("支付宝新增商户请求报文:"+inputParam);
         OutputParam outputParam = aliService.createMer(inputParam);
         return outputParam;
     }

@@ -16,6 +16,17 @@ zuul:
       path: /pay-web/**
       serviceId: pay-web
 
+#路由超时，即socket超时设置
 ribbon:
   ReadTimeout: 10000
-  SocketTimeOut: 10000
+  ConnectTimeout: 10000
+  MaxAutoRetries: 0 #同一台实例最大重试次数,不包括首次调用
+  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+#hystrix超时
+hystrix:
+  command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 10000
