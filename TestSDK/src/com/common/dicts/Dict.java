@@ -158,4 +158,5 @@ public class Dict {
     public static final String address = "address";
 	public static final String editMer = "editMer";
     public static final String deleteMer = "deleteMer";
+	public static final String orderQuery = "orderQuery";
 }

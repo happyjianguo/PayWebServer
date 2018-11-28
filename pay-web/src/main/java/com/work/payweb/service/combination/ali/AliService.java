@@ -16,4 +16,5 @@ public interface AliService {
 
     boolean updateMer(Map<String, String> map);
 
+    String orderQuery(Map<String, String> map);
 }

@@ -29,4 +29,11 @@ public class AliServiceHystric implements AliMicroService{
         return outputParam;
     }
 
+    @Override
+    public OutputParam orderQuery(InputParam inputParam) {
+        OutputParam outputParam = new OutputParam();
+        outputParam.setRetMsg("ali orderQuery service is not available !");
+        return outputParam;
+    }
+
 }

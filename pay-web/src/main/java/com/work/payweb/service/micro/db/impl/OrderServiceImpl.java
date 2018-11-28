@@ -17,4 +17,15 @@ public class OrderServiceImpl implements OrderService{
         int num = tblOrderMapper.insert(tblOrder);
         return num == 1 ;
     }
+
+    @Override
+    public TblOrder queryOrder(String merId) {
+        return tblOrderMapper.selectByPrimaryKey(merId);
+    }
+
+    @Override
+    public boolean updateOrder(TblOrder tblOrder) {
+        int num = tblOrderMapper.updateByPrimaryKeySelective(tblOrder);
+        return num == 1 ;
+    }
 }

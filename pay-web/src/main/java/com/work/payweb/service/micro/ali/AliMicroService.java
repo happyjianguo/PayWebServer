@@ -17,4 +17,7 @@ public interface AliMicroService {
 
     @RequestMapping(value = "/createMer")
     OutputParam createMer(InputParam inputParam);
+
+    @RequestMapping(value = "/orderQuery")
+    OutputParam orderQuery(InputParam inputParam);
 }

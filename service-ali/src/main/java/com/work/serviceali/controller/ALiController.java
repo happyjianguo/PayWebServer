@@ -49,5 +49,12 @@ public class ALiController extends PubClz {
         return outputParam;
     }
 
+    @TrackTime(param = "支付宝服务订单查询")
+    @RequestMapping(value = "/orderQuery")
+    public OutputParam orderQuery(@RequestBody InputParam inputParam) {
+        OutputParam outputParam = aliService.orderQuery(inputParam);
+        return outputParam;
+    }
+
 
 }

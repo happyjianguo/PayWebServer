@@ -17,6 +17,7 @@ import com.work.payweb.service.micro.ali.AliMicroService;
 import com.work.payweb.service.micro.db.MerchantService;
 import com.work.payweb.service.micro.db.OrderService;
 import com.work.payweb.service.micro.db.SeqService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +47,9 @@ public class AliServiceImpl extends PubClz implements AliService{
     public String prePay(Map<String, String> map) {
         logger.info("支付宝扫码请求报文:"+map.toString());
         //订单入库
+        String txnSeqId = seqService.getSeqNextVal(DbConstants.SEQ.OrderSeq);
         TblOrder tblOrder = new TblOrder();
-        tblOrder.setTxnSeqId(seqService.getSeqNextVal(DbConstants.SEQ.OrderSeq));
+        tblOrder.setTxnSeqId(txnSeqId);
         tblOrder.setTxnTime(DateUtil.getDateStr(DateUtil.YYYYMMDDHHMMSS));
         tblOrder.setOrderAmount(map.get(Dict.orderAmount));
         tblOrder.setOutNumber(map.get(Dict.outTradeNo));
@@ -60,6 +62,7 @@ public class AliServiceImpl extends PubClz implements AliService{
         //去支付宝生成二维码
         InputParam inputParam = new InputParam();
         inputParam.setParams(map);
+        inputParam.putParam(Dict.txnSeqId,txnSeqId);
         OutputParam outputParam = aliMicroService.prePay(inputParam);
         logger.info(outputParam.toString());
 
@@ -126,5 +129,49 @@ public class AliServiceImpl extends PubClz implements AliService{
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public String orderQuery(Map<String, String> map) {
+        logger.info("支付宝订单查询请求报文:"+map.toString());
+
+        String txnSeqId = map.get(Dict.txnSeqId);
+        TblOrder tblOrder = orderService.queryOrder(txnSeqId);
+        if (null == tblOrder) {
+            return "订单不存在";
+        }
+
+        String status = tblOrder.getStatus();
+        if (StringConstans.ORDER_STATUS.STATUS_02.equals(status)
+                || StringConstans.ORDER_STATUS.STATUS_03.equals(status)) {
+            return TransUtil.objectToMap(tblOrder).toString();
+        }
+
+        //去支付宝查询订单信息
+        InputParam inputParam = new InputParam();
+        inputParam.putParam(Dict.txnSeqId, txnSeqId);
+        OutputParam outputParam = aliMicroService.orderQuery(inputParam);
+        String respContent = outputParam.getParam(Dict.respContent);
+
+        JSONObject jsonObject = JSONObject.fromObject(respContent);
+        String code = StringUtil.toString(jsonObject.get(Dict.code));
+        String msg = StringUtil.toString(jsonObject.get(Dict.msg));
+        String tradeNo = StringUtil.toString(jsonObject.get(Dict.trade_no));
+        String tradeStatus = StringUtil.toString(jsonObject.get(Dict.trade_status));
+
+        //更新订单
+        TblOrder tblOrderUpd = new TblOrder();
+        tblOrderUpd.setTxnSeqId(txnSeqId);
+        if("10000".equals(code) && msg.equals("Success")){
+//            tblOrderUpd.setOthChannelNumber(tradeNo);
+            tblOrderUpd.setStatus(StringConstans.ORDER_STATUS.STATUS_02);
+            tblOrderUpd.setMsg(tradeStatus);
+            boolean result = orderService.updateOrder(tblOrderUpd);
+            logger.info("更新订单结果:"+result);
+        } else {
+            tblOrderUpd.setStatus(StringConstans.ORDER_STATUS.STATUS_03);
+            tblOrderUpd.setMsg("交易失败");
+        }
+        return respContent;
     }
 }

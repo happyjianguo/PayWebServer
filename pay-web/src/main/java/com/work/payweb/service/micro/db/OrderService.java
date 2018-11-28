@@ -6,4 +6,8 @@ public interface OrderService {
 
     boolean insertOrder(TblOrder tblOrder);
 
+    TblOrder queryOrder(String merId);
+
+    boolean updateOrder(TblOrder tblOrder);
+
 }

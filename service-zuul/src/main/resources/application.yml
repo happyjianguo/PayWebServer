@@ -18,10 +18,10 @@ zuul:
 
 #路由超时，即socket超时设置
 ribbon:
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
+  ReadTimeout: 15000
+  ConnectTimeout: 15000
   MaxAutoRetries: 0 #同一台实例最大重试次数,不包括首次调用
-  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+  MaxAutoRetriesNextServer: 1
 #hystrix超时
 hystrix:
   command:
@@ -29,4 +29,4 @@ hystrix:
         execution:
           isolation:
             thread:
-              timeoutInMilliseconds: 10000
+              timeoutInMilliseconds: 15000

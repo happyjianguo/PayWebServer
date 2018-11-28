@@ -39,12 +39,12 @@ public class PayWebController extends PubClz{
         return aliService.prePay(map);
     }
 
-    @TrackTime(param = "支付宝扫码交易")
+    @TrackTime(param = "支付宝交易查询交易")
     @RequestMapping(value="/orderQuery")
     public String orderQuery(@RequestBody String body) throws UnsupportedEncodingException {
         String bodyDecond = URLDecoder.decode(body, "UTF-8");
         Map<String, String> map = TransUtil.jsonToMap(bodyDecond.substring(0,bodyDecond.length()-1));
-        return aliService.prePay(map);
+        return aliService.orderQuery(map);
     }
 
     @TrackTime(param = "支付宝新增商户")

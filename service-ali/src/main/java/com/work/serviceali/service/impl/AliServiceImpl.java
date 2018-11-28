@@ -72,7 +72,7 @@ public class AliServiceImpl extends PubClz implements AliService {
     public OutputParam prePay(InputParam inputParam) {
         OutputParam outputParam = new OutputParam();
         try {
-            String outTradeNo = inputParam.getParam(Dict.outTradeNo);
+            String outTradeNo = inputParam.getParam(Dict.txnSeqId);
             String orderAmount = inputParam.getParam(Dict.orderAmount);
             String subject = inputParam.getParam(Dict.subject);
             String subMchId = inputParam.getParam(Dict.subMchId);
@@ -170,6 +170,27 @@ public class AliServiceImpl extends PubClz implements AliService {
 
         } finally {
 
+        }
+        return outputParam;
+    }
+
+    @Override
+    public OutputParam orderQuery(InputParam inputParam) {
+        OutputParam outputParam = new OutputParam();
+        try {
+            String txnSeqId = inputParam.getParam(Dict.txnSeqId);
+            HashMap<String, Object> data = new HashMap<String, Object>();
+            data.put(Dict.out_trade_no, txnSeqId); // 订单支付时传入的商户订单号,和支付宝交易号不能同时为空。trade_no,out_trade_no如果同时存在优先取trade_no
+
+            Map<String, String> needData = new HashMap<String, String>();
+            needData.put(Dict.interfaceName, aliConfig.getTradeQuery());
+
+            String returnMsg = ylAliPayService.aliSdk(data, needData); // 扫码支付
+            outputParam.putParam(Dict.respContent, returnMsg);
+            outputParam.setRetMsg("成功");
+            outputParam.setRetCode("success");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return outputParam;
     }

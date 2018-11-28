@@ -10,4 +10,6 @@ public interface AliService {
     OutputParam prePay(InputParam inputParam);
 
     OutputParam createMer(InputParam inputParam);
+
+    OutputParam orderQuery(InputParam inputParam);
 }
