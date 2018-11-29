@@ -563,5 +563,8 @@ public class Dict {
 	public static final String offstDesc = "offstDesc";
 	/**公用参数*/
 	public static final String general = "general";
+	/**返回参数*/
     public static final String respContent = "respContent";
+	/**订单状态*/
+    public static final String status = "status";
 }

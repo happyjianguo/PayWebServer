@@ -110,4 +110,21 @@ public class TblOrder {
     public void setMsg(String msg) {
         this.msg = msg == null ? null : msg.trim();
     }
+
+    @Override
+    public String toString() {
+        return "TblOrder{" +
+                "txnSeqId='" + txnSeqId + '\'' +
+                ", txnTime='" + txnTime + '\'' +
+                ", outNumber='" + outNumber + '\'' +
+                ", outTime='" + outTime + '\'' +
+                ", merId='" + merId + '\'' +
+                ", subMerId='" + subMerId + '\'' +
+                ", orderAmount='" + orderAmount + '\'' +
+                ", payChannel='" + payChannel + '\'' +
+                ", othChannelNumber='" + othChannelNumber + '\'' +
+                ", status='" + status + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

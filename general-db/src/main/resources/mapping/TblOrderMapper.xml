@@ -18,6 +18,15 @@
     txn_seq_id, txn_time, out_number, out_time, mer_id, sub_mer_id, order_amount, pay_channel, 
     oth_channel_number, status, msg
   </sql>
+  <!--自定义sql开始-->
+  <select id="selectInitOrder" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_order
+    where status = #{status,jdbcType=VARCHAR}
+  </select>
+  <!--自定义sql结束-->
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
