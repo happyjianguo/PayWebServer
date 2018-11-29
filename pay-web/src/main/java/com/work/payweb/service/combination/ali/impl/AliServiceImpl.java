@@ -46,23 +46,35 @@ public class AliServiceImpl extends PubClz implements AliService{
     @Override
     public String prePay(Map<String, String> map) {
         logger.info("支付宝扫码请求报文:"+map.toString());
+
+        String merId = map.get(Dict.merId);
+        String orderAmount = map.get(Dict.orderAmount);
+        String subject = map.get(Dict.subject);
+        String body = map.get(Dict.body);
+
+        TblMerchant tblMerchant = merchantService.queryMerchant(merId);
+        String subMerId = tblMerchant.getAliSubMerId();
         //订单入库
         String txnSeqId = seqService.getSeqNextVal(DbConstants.SEQ.OrderSeq);
         TblOrder tblOrder = new TblOrder();
         tblOrder.setTxnSeqId(txnSeqId);
         tblOrder.setTxnTime(DateUtil.getDateStr(DateUtil.YYYYMMDDHHMMSS));
-        tblOrder.setOrderAmount(map.get(Dict.orderAmount));
+        tblOrder.setOrderAmount(orderAmount);
         tblOrder.setOutNumber(map.get(Dict.outTradeNo));
         tblOrder.setPayChannel("ALI");
-        tblOrder.setSubMerId(map.get(Dict.subMchId));
+        tblOrder.setMerId(merId);
+        tblOrder.setSubMerId(subMerId);
         tblOrder.setStatus(StringConstans.ORDER_STATUS.STATUS_01);
         tblOrder.setMsg("订单初始化");
         orderService.insertOrder(tblOrder);
 
         //去支付宝生成二维码
         InputParam inputParam = new InputParam();
-        inputParam.setParams(map);
         inputParam.putParam(Dict.txnSeqId,txnSeqId);
+        inputParam.putParam(Dict.subMerId,subMerId);
+        inputParam.putParam(Dict.orderAmount,orderAmount);
+        inputParam.putParam(Dict.subject,subject);
+        inputParam.putParam(Dict.body,body);
         OutputParam outputParam = aliMicroService.prePay(inputParam);
         logger.info(outputParam.toString());
 
@@ -78,7 +90,6 @@ public class AliServiceImpl extends PubClz implements AliService{
         map.put(Dict.merId, merId);
         InputParam inputParam = new InputParam();
         inputParam.setParams(map);
-        inputParam.putParam(Dict.orgPid,"2088721382101609");
         OutputParam outputParam = aliMicroService.createMer(inputParam);
         String subMerId = outputParam.getParam(Dict.subMerId);
 
@@ -92,10 +103,10 @@ public class AliServiceImpl extends PubClz implements AliService{
         tblMerchant.setName(map.get(Dict.name));
         tblMerchant.setAliasName(map.get(Dict.aliasName));
         tblMerchant.setContactName(map.get(Dict.contactName));
-        tblMerchant.setContactPhone(map.get(Dict.servicePhone));
+        tblMerchant.setServicePhone(map.get(Dict.servicePhone));
         tblMerchant.setAddress(map.get(Dict.address));
-        tblMerchant.setChannel("ALI");
-        tblMerchant.setSubMerId(subMerId);
+        tblMerchant.setMcc(map.get(Dict.mcc));
+        tblMerchant.setAliSubMerId(subMerId);
         tblMerchant.setCreateTime(DateUtil.getDateStr(DateUtil.YYYYMMDDHHMMSS));
         merchantService.insertMerchant(tblMerchant);
 

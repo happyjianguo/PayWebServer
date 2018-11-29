@@ -75,7 +75,7 @@ public class AliServiceImpl extends PubClz implements AliService {
             String outTradeNo = inputParam.getParam(Dict.txnSeqId);
             String orderAmount = inputParam.getParam(Dict.orderAmount);
             String subject = inputParam.getParam(Dict.subject);
-            String subMchId = inputParam.getParam(Dict.subMchId);
+            String subMerId = inputParam.getParam(Dict.subMerId);
             String body = inputParam.getParam(Dict.body);
 
             HashMap<String, Object> data = new HashMap<String, Object>();
@@ -83,7 +83,7 @@ public class AliServiceImpl extends PubClz implements AliService {
             data.put("total_amount", orderAmount);
             data.put("subject", subject); // 订单标题
             Map<String, Object> SubMerchant = new HashMap<String, Object>();
-            SubMerchant.put("merchant_id", subMchId);
+            SubMerchant.put("merchant_id", subMerId);
             SubMerchant.put("merchant_type", "alipay");
             data.put("sub_merchant", SubMerchant);
             data.put("body", body); // 对交易或商品的描述
@@ -115,7 +115,6 @@ public class AliServiceImpl extends PubClz implements AliService {
             String aliasName = inputParam.getParam(Dict.aliasName);
             String servicePhone = inputParam.getParam(Dict.servicePhone);
             String categoryId = inputParam.getParam(Dict.categoryId);
-            String orgPid = inputParam.getParam(Dict.orgPid);
             String mcc = inputParam.getParam(Dict.mcc);
             String contactName = inputParam.getParam(Dict.contactName);
             String address = inputParam.getParam(Dict.address);
@@ -126,8 +125,8 @@ public class AliServiceImpl extends PubClz implements AliService {
             data.put("alias_name", aliasName); // 商户简称
             data.put("service_phone", servicePhone); // 商户客服电话
             data.put("category_id", categoryId); // 商户经营类目
-            data.put("source", aliConfig.getMerid()); // 商户来源机构标识，填写机构在支付宝的pid
-            data.put("org_pid", orgPid);
+            data.put("source", aliConfig.getPid()); // 商户来源机构标识，填写机构在支付宝的pid
+            data.put("org_pid", aliConfig.getPid());
             data.put("mcc", mcc);
             // 商户联系人信息
             List<Object> contactInfo = new LinkedList<Object>();

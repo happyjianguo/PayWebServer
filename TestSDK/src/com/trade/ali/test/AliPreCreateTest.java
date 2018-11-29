@@ -15,6 +15,7 @@ public class AliPreCreateTest {
 
 		//Ö÷É¨
 		Map<String,String> mapAliPreCreate = AliPreCreate.getData();
+		mapAliPreCreate.put(Dict.merId,"900201811291000077");
 		HttpUtil.httpRequest(PropertyUtil.getProperty(Dict.prePay),mapAliPreCreate);
 
 

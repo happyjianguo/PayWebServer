@@ -1,9 +1,8 @@
 package com.work.generaldb.model;
 
-
 import java.io.Serializable;
 
-public class TblMerchant implements Serializable {
+public class TblMerchant implements Serializable{
     private String merId;
 
     private String name;
@@ -12,13 +11,15 @@ public class TblMerchant implements Serializable {
 
     private String contactName;
 
-    private String contactPhone;
+    private String servicePhone;
 
     private String address;
 
-    private String channel;
+    private String aliSubMerId;
 
-    private String subMerId;
+    private String wxSubMerId;
+
+    private String mcc;
 
     private String createTime;
 
@@ -54,12 +55,12 @@ public class TblMerchant implements Serializable {
         this.contactName = contactName == null ? null : contactName.trim();
     }
 
-    public String getContactPhone() {
-        return contactPhone;
+    public String getServicePhone() {
+        return servicePhone;
     }
 
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone == null ? null : contactPhone.trim();
+    public void setServicePhone(String servicePhone) {
+        this.servicePhone = servicePhone == null ? null : servicePhone.trim();
     }
 
     public String getAddress() {
@@ -70,20 +71,28 @@ public class TblMerchant implements Serializable {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getChannel() {
-        return channel;
+    public String getAliSubMerId() {
+        return aliSubMerId;
     }
 
-    public void setChannel(String channel) {
-        this.channel = channel == null ? null : channel.trim();
+    public void setAliSubMerId(String aliSubMerId) {
+        this.aliSubMerId = aliSubMerId == null ? null : aliSubMerId.trim();
     }
 
-    public String getSubMerId() {
-        return subMerId;
+    public String getWxSubMerId() {
+        return wxSubMerId;
     }
 
-    public void setSubMerId(String subMerId) {
-        this.subMerId = subMerId == null ? null : subMerId.trim();
+    public void setWxSubMerId(String wxSubMerId) {
+        this.wxSubMerId = wxSubMerId == null ? null : wxSubMerId.trim();
+    }
+
+    public String getMcc() {
+        return mcc;
+    }
+
+    public void setMcc(String mcc) {
+        this.mcc = mcc == null ? null : mcc.trim();
     }
 
     public String getCreateTime() {
@@ -92,20 +101,5 @@ public class TblMerchant implements Serializable {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime == null ? null : createTime.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "TblMerchant{" +
-                "merId='" + merId + '\'' +
-                ", name='" + name + '\'' +
-                ", aliasName='" + aliasName + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", contactPhone='" + contactPhone + '\'' +
-                ", address='" + address + '\'' +
-                ", channel='" + channel + '\'' +
-                ", subMerId='" + subMerId + '\'' +
-                ", createTime='" + createTime + '\'' +
-                '}';
     }
 }

@@ -6,15 +6,16 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
     <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
-    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="service_phone" property="servicePhone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="channel" property="channel" jdbcType="VARCHAR" />
-    <result column="sub_mer_id" property="subMerId" jdbcType="VARCHAR" />
+    <result column="ali_sub_mer_id" property="aliSubMerId" jdbcType="VARCHAR" />
+    <result column="wx_sub_mer_id" property="wxSubMerId" jdbcType="VARCHAR" />
+    <result column="mcc" property="mcc" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    mer_id, name, alias_name, contact_name, contact_phone, address, channel, sub_mer_id, 
-    create_time
+    mer_id, name, alias_name, contact_name, service_phone, address, ali_sub_mer_id, wx_sub_mer_id, 
+    mcc, create_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -28,13 +29,13 @@
   </delete>
   <insert id="insert" parameterType="com.work.generaldb.model.TblMerchant" >
     insert into tbl_merchant (mer_id, name, alias_name, 
-      contact_name, contact_phone, address, 
-      channel, sub_mer_id, create_time
-      )
+      contact_name, service_phone, address, 
+      ali_sub_mer_id, wx_sub_mer_id, mcc, 
+      create_time)
     values (#{merId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{aliasName,jdbcType=VARCHAR}, 
-      #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{channel,jdbcType=VARCHAR}, #{subMerId,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}
-      )
+      #{contactName,jdbcType=VARCHAR}, #{servicePhone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{aliSubMerId,jdbcType=VARCHAR}, #{wxSubMerId,jdbcType=VARCHAR}, #{mcc,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.work.generaldb.model.TblMerchant" >
     insert into tbl_merchant
@@ -51,17 +52,20 @@
       <if test="contactName != null" >
         contact_name,
       </if>
-      <if test="contactPhone != null" >
-        contact_phone,
+      <if test="servicePhone != null" >
+        service_phone,
       </if>
       <if test="address != null" >
         address,
       </if>
-      <if test="channel != null" >
-        channel,
+      <if test="aliSubMerId != null" >
+        ali_sub_mer_id,
       </if>
-      <if test="subMerId != null" >
-        sub_mer_id,
+      <if test="wxSubMerId != null" >
+        wx_sub_mer_id,
+      </if>
+      <if test="mcc != null" >
+        mcc,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -80,17 +84,20 @@
       <if test="contactName != null" >
         #{contactName,jdbcType=VARCHAR},
       </if>
-      <if test="contactPhone != null" >
-        #{contactPhone,jdbcType=VARCHAR},
+      <if test="servicePhone != null" >
+        #{servicePhone,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="channel != null" >
-        #{channel,jdbcType=VARCHAR},
+      <if test="aliSubMerId != null" >
+        #{aliSubMerId,jdbcType=VARCHAR},
       </if>
-      <if test="subMerId != null" >
-        #{subMerId,jdbcType=VARCHAR},
+      <if test="wxSubMerId != null" >
+        #{wxSubMerId,jdbcType=VARCHAR},
+      </if>
+      <if test="mcc != null" >
+        #{mcc,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=VARCHAR},
@@ -109,17 +116,20 @@
       <if test="contactName != null" >
         contact_name = #{contactName,jdbcType=VARCHAR},
       </if>
-      <if test="contactPhone != null" >
-        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      <if test="servicePhone != null" >
+        service_phone = #{servicePhone,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="channel != null" >
-        channel = #{channel,jdbcType=VARCHAR},
+      <if test="aliSubMerId != null" >
+        ali_sub_mer_id = #{aliSubMerId,jdbcType=VARCHAR},
       </if>
-      <if test="subMerId != null" >
-        sub_mer_id = #{subMerId,jdbcType=VARCHAR},
+      <if test="wxSubMerId != null" >
+        wx_sub_mer_id = #{wxSubMerId,jdbcType=VARCHAR},
+      </if>
+      <if test="mcc != null" >
+        mcc = #{mcc,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=VARCHAR},
@@ -132,10 +142,11 @@
     set name = #{name,jdbcType=VARCHAR},
       alias_name = #{aliasName,jdbcType=VARCHAR},
       contact_name = #{contactName,jdbcType=VARCHAR},
-      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      channel = #{channel,jdbcType=VARCHAR},
-      sub_mer_id = #{subMerId,jdbcType=VARCHAR},
+      ali_sub_mer_id = #{aliSubMerId,jdbcType=VARCHAR},
+      wx_sub_mer_id = #{wxSubMerId,jdbcType=VARCHAR},
+      mcc = #{mcc,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR}
     where mer_id = #{merId,jdbcType=VARCHAR}
   </update>

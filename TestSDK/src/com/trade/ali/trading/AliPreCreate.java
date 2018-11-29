@@ -16,7 +16,7 @@ public class AliPreCreate {
 		map.put(Dict.outTradeNo, "3000"+DateUtil.getDateStr("yyyyMMddHHmmss"));
 		map.put(Dict.orderAmount,"0.01");
 		map.put(Dict.subject,"扫码测试商品");
-		map.put(Dict.subMchId,"2088000419225331");
+		map.put(Dict.merId,"900201811281000055");
 		map.put(Dict.body,"扫码测试商品");
 
 		return map;

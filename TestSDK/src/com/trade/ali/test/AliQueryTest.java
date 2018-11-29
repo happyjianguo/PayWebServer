@@ -16,7 +16,7 @@ public class AliQueryTest {
 	public void SocketReq() throws Exception {
 
 		Map<String,String> mapAliQuery = AliQuery.getData();
-		mapAliQuery.put(Dict.txnSeqId, "100000027");
+		mapAliQuery.put(Dict.txnSeqId, "100000042");
 		HttpUtil.httpRequest(PropertyUtil.getProperty(Dict.orderQuery),mapAliQuery);
 
 	}
