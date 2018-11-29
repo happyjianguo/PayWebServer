@@ -32,7 +32,7 @@ public class OrderQuartz extends PubClz{
 
     @Scheduled(fixedRate = 10000)
     public String testFixRate() {
-        System.out.println("我每隔10秒冒泡一次");
+//        System.out.println("我每隔10秒冒泡一次");
         return "";
     }
 
