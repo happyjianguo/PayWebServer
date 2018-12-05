@@ -14,7 +14,7 @@ spring:
         url: jdbc:mysql://192.168.78.128:3306/mytest?useUnicode=true&characterEncoding=utf8
         username: root
         password: 123
-        # Ê¹ÓÃdruidÊı¾İÔ´
+        # ä½¿ç”¨druidæ•°æ®æº
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
         filters: stat
@@ -48,11 +48,11 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.work.generaldb.model
-  #mybatis´òÓ¡sql
+  #mybatisæ‰“å°sql
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-#pagehelper·ÖÒ³²å¼ş
+#pagehelperåˆ†é¡µæ’ä»¶
 pagehelper:
     helperDialect: mysql
     reasonable: true
@@ -64,13 +64,13 @@ feign:
 #    enabled: true
   hystrix:
     enabled: true
-#Â·ÓÉ³¬Ê±£¬¼´socket³¬Ê±ÉèÖÃ
+#è·¯ç”±è¶…æ—¶ï¼Œå³socketè¶…æ—¶è®¾ç½®
 ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000
-  MaxAutoRetries: 0 #Í¬Ò»Ì¨ÊµÀı×î´óÖØÊÔ´ÎÊı,²»°üÀ¨Ê×´Îµ÷ÓÃ
-  MaxAutoRetriesNextServer: 1 #ÖØÊÔ¸ºÔØ¾ùºâÆäËûµÄÊµÀı×î´óÖØÊÔ´ÎÊı,²»°üÀ¨Ê×´Îµ÷ÓÃ
-#hystrix³¬Ê±
+  MaxAutoRetries: 0 #åŒä¸€å°å®ä¾‹æœ€å¤§é‡è¯•æ¬¡æ•°,ä¸åŒ…æ‹¬é¦–æ¬¡è°ƒç”¨
+  MaxAutoRetriesNextServer: 1 #é‡è¯•è´Ÿè½½å‡è¡¡å…¶ä»–çš„å®ä¾‹æœ€å¤§é‡è¯•æ¬¡æ•°,ä¸åŒ…æ‹¬é¦–æ¬¡è°ƒç”¨
+#hystrixè¶…æ—¶
 hystrix:
   command:
       default:
