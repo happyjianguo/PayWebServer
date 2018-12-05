@@ -43,7 +43,7 @@ mybatis:
 
 #pagehelper分页插件
 pagehelper:
-    helperDialect: mysql
+    helperDialect: mysql1
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
