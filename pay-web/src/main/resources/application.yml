@@ -60,8 +60,9 @@ pagehelper:
     params: count=countSql
 
 feign:
-#  httpclient:
-#    enabled: true
+  #使用http client替换默认的client
+  httpclient:
+    enabled: true
   hystrix:
     enabled: true
 #路由超时，即socket超时设置
