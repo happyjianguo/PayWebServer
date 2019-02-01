@@ -11,7 +11,7 @@ spring:
         name: service-schedule
     datasource:
         name: test
-        url: jdbc:mysql://192.168.78.128:3306/mytest?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://192.168.61.129:3306/mytest?useUnicode=true&characterEncoding=utf8
         username: root
         password: 123
         # 使用druid数据源

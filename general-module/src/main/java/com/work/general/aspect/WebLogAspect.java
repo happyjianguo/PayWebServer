@@ -25,7 +25,7 @@ public class WebLogAspect extends PubClz{
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-    @Pointcut("execution(public * com.work.*.controller..*(..))")
+    @Pointcut("execution(public * com.work1.*.controller..*(..))")
     public void webLog(){}
 
     @Before("webLog()")

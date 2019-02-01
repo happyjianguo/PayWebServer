@@ -73,6 +73,7 @@ public class AliServiceImpl extends PubClz implements AliService{
         inputParam.putParam(Dict.orderAmount,orderAmount);
         inputParam.putParam(Dict.subject,subject);
         inputParam.putParam(Dict.body,body);
+        logger.info("请求支付宝报文："+inputParam.toString());
         OutputParam outputParam = aliMicroService.prePay(inputParam);
         logger.info(outputParam.toString());
 
@@ -89,6 +90,7 @@ public class AliServiceImpl extends PubClz implements AliService{
         InputParam inputParam = new InputParam();
         inputParam.setParams(map);
         OutputParam outputParam = aliMicroService.createMer(inputParam);
+        logger.info(outputParam.toString());
         String subMerId = outputParam.getParam(Dict.subMerId);
 
         if (StringUtil.isEmpty(subMerId)) {
