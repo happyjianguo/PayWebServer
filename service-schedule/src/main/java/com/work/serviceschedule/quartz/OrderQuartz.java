@@ -39,7 +39,7 @@ public class OrderQuartz extends PubClz{
     /**
      * 每五分钟查询订单表中初始状态的订单
      */
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public String queryInitOrder() {
         Map map = new HashMap();
         map.put(Dict.status, StringConstans.ORDER_STATUS.STATUS_01);
