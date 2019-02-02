@@ -22,7 +22,7 @@ public class C2BMarketQueryTest {
 	public void C2BMarketQuery() {
 		//C2B银联二维码申请二维码服务
 		Map<String,String> reqMapCreateQrcode = C2BMarketQuery.getC2BMarketQuery();
-		reqMapCreateQrcode.put(Dict.txnSeqId, "1006706943");
+		reqMapCreateQrcode.put(Dict.txnSeqId, "1006706944");
 		reqMapCreateQrcode.put(Dict.txnTime, "20181105160048");
 		reqMapCreateQrcode.put(Dict.orderAmount, "000000000620");
 		String data = TransUtil.mapToXml(reqMapCreateQrcode);
