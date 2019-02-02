@@ -1,4 +1,4 @@
-package com.work.servicekafka.producer;
+package com.work.servicekafka.kafka.producer;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.ProducerRecord;

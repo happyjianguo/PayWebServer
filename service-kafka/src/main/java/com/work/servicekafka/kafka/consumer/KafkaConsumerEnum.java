@@ -1,4 +1,4 @@
-package com.work.servicekafka.producer;
+package com.work.servicekafka.kafka.consumer;
 
 import java.util.Arrays;
 import java.util.HashMap;
