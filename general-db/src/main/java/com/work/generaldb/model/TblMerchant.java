@@ -102,4 +102,20 @@ public class TblMerchant implements Serializable{
     public void setCreateTime(String createTime) {
         this.createTime = createTime == null ? null : createTime.trim();
     }
+
+    @Override
+    public String toString() {
+        return "TblMerchant{" +
+                "merId='" + merId + '\'' +
+                ", name='" + name + '\'' +
+                ", aliasName='" + aliasName + '\'' +
+                ", contactName='" + contactName + '\'' +
+                ", servicePhone='" + servicePhone + '\'' +
+                ", address='" + address + '\'' +
+                ", aliSubMerId='" + aliSubMerId + '\'' +
+                ", wxSubMerId='" + wxSubMerId + '\'' +
+                ", mcc='" + mcc + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
+    }
 }

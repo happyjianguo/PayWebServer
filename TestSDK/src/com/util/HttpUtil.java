@@ -11,6 +11,11 @@ import java.util.Map.Entry;
 public class HttpUtil {
 
 
+	public static void main(String[] args) throws Exception {
+		HttpUtil.httpRequest("http://127.0.0.1:9999/pay-web/setRedis","");
+	}
+
+
 	/**
 	 * 
 	 * ∑¢ÀÕhttp«Î«Û
