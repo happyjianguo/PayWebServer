@@ -1,5 +1,6 @@
 package com.work.generaldb.service.impl;
 
+import com.work.general.annotations.ExtCacheable;
 import com.work.generaldb.mapper.TblMerchantMapper;
 import com.work.generaldb.model.TblMerchant;
 import com.work.generaldb.service.MerchantService;
@@ -20,11 +21,17 @@ public class MerchantServiceImpl implements MerchantService {
         return num == 1;
     }
 
-    @Cacheable(value = "merchant", key = "#key")
+    @ExtCacheable(value = "merchant", key = "#key", expireTime = 600L)
     @Override
     public TblMerchant queryMerchant(String key) {
         return tblMerchantMapper.selectByPrimaryKey(key);
     }
+
+//    @Cacheable(value = "merchant", key = "#key")
+//    @Override
+//    public TblMerchant queryMerchant(String key) {
+//        return tblMerchantMapper.selectByPrimaryKey(key);
+//    }
 
     @CacheEvict(value = "merchant", key = "#key")
     @Override
