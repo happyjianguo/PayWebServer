@@ -25,24 +25,24 @@ public enum KafkaConsumerEnum {
 	private KafkaConsumerEnum() {
 		Properties properties = new Properties();
 		// kafka集群地址 , 形式为 ip:port,ip:port,ip:port
-		properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"192.168.61.129:9092");
+		properties.put("bootstrap.servers","192.168.61.129:9092");
 		// 消费者偏移量自动提交
-		properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+		properties.put("enable.auto.commit", "false");
 		// 消费者偏移量自动提交周期
-		properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100");
+		properties.put("auto.commit.interval.ms", "100");
 		// 消费者故障超时
-		properties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "60000");
+		properties.put("session.timeout.ms", "60000");
 		// 实现Serializer接口的序列化类的键
-		properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		properties.put("key.deserializer", StringDeserializer.class);
 		// 实现Serializer接口的序列化类的值
-		properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		properties.put("value.deserializer", StringDeserializer.class);
 		// 消费者所属组的id
-		properties.put(ConsumerConfig.GROUP_ID_CONFIG, "ewm");
+		properties.put("group.id", "ewm");
 		// 偏移量设置
-		properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+		properties.put("auto.offset.reset", "latest");
 		// 消费者偏移量提交间隔时间控制
-		properties.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, "20000");
-		properties.put(ConsumerConfig.REQUEST_TIMEOUT_MS_CONFIG, "70000");
+		properties.put("heartbeat.interval.ms", "20000");
+		properties.put("request.timeout.ms", "70000");
 
 		kafkaConsumer = new KafkaConsumer<String, String>(properties);
 	}
