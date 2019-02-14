@@ -47,10 +47,10 @@ public class ExtCacheableAspect extends PubClz{
             Object arg = args[i];//参数值
             String type = args[i].getClass().getName();//参数类型
             String parameterName = parameterNames[i];//参数名称
-            logger.info("参数值:"+arg+",参数类型:"+type+",参数名称"+parameterName);
+            logger.info("参数值:"+arg+",参数类型:"+type+",参数名称:"+parameterName);
 
             //处理自定义注解的参数
-            if (!key.equals(parameterName)) {
+            if (key.indexOf(parameterName) < 0) {
                 continue;
             }
 
@@ -58,7 +58,7 @@ public class ExtCacheableAspect extends PubClz{
             if ("java.lang.String".equals(type)) {
                 redisKey = value + "::" + arg;
             } else {
-                String name = key.split(".")[1];
+                String name = key.split("[.]")[1];
                 redisKey = value + "::" + ReflectUtil.getter(arg,name);
             }
             logger.info(redisKey+":"+redisKey);

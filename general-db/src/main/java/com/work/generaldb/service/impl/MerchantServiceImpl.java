@@ -27,6 +27,12 @@ public class MerchantServiceImpl implements MerchantService {
         return tblMerchantMapper.selectByPrimaryKey(key);
     }
 
+    @ExtCacheable(value = "merchant", key = "#tblMerchant.merId", expireTime = 600L)
+    @Override
+    public TblMerchant queryMerchant(TblMerchant tblMerchant) {
+        return tblMerchantMapper.selectByPrimaryKey(tblMerchant.getMerId());
+    }
+
 //    @Cacheable(value = "merchant", key = "#key")
 //    @Override
 //    public TblMerchant queryMerchant(String key) {

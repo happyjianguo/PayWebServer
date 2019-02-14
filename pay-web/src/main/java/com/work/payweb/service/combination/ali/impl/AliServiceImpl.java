@@ -118,6 +118,13 @@ public class AliServiceImpl extends PubClz implements AliService{
         String merId = map.get(Dict.merId);
         TblMerchant tblMerchant = merchantService.queryMerchant(merId);
         return tblMerchant.toString();
+
+
+//        String merId = map.get(Dict.merId);
+//        TblMerchant t = new TblMerchant();
+//        t.setMerId(merId);
+//        TblMerchant tblMerchant = merchantService.queryMerchant(t);
+//        return tblMerchant.toString();
     }
 
     @Override
