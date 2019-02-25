@@ -10,9 +10,15 @@ spring:
 server:
   port: 9999
 
+#zuul:
+#  routes:
+#    feign:
+#      path: /pay-web/**
+#      serviceId: pay-web
+
 zuul:
   routes:
-    feign:
+    pay-web:
       path: /pay-web/**
       serviceId: pay-web
 
