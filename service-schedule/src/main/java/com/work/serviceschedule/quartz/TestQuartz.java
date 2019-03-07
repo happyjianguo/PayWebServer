@@ -16,6 +16,10 @@ public class TestQuartz  extends PubClz {
     EnvironmentUtil environmentUtil;
 
 
+    /**
+     * 分布式锁定时任务竞争获取锁
+     * @return
+     */
     //    @Scheduled(fixedRate = 10000)
     @Scheduled(cron = "0 0/1 * * * ?")
     public String testFixRate() {
