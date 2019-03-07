@@ -2,7 +2,7 @@ package com.work.general.controller;
 
 import com.work.general.annotations.TrackTime;
 import com.work.general.pub.PubClz;
-import com.work.general.util.RedisUtil;
+import com.work.general.redisservice.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

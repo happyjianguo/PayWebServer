@@ -5,6 +5,8 @@ import com.work.general.dicts.Dict;
 import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
 import com.work.general.pub.PubClz;
+import com.work.general.redisservice.RedisLockService;
+import com.work.general.util.EnvironmentUtil;
 import com.work.general.util.StringUtil;
 import com.work.generaldb.mapper.TblOrderMapper;
 import com.work.generaldb.model.TblOrder;
@@ -30,16 +32,10 @@ public class OrderQuartz extends PubClz{
     OrderService orderService;
 
 
-    @Scheduled(fixedRate = 10000)
-    public String testFixRate() {
-//        System.out.println("我每隔10秒冒泡一次");
-        return "";
-    }
-
     /**
      * 每五分钟查询订单表中初始状态的订单
      */
-    @Scheduled(cron = "0 0/1 * * * ?")
+//    @Scheduled(cron = "0 0/1 * * * ?")
     public String queryInitOrder() {
         Map map = new HashMap();
         map.put(Dict.status, StringConstans.ORDER_STATUS.STATUS_01);

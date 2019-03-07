@@ -2,11 +2,9 @@ package com.work.payweb.controller;
 
 import com.work.general.annotations.TrackTime;
 import com.work.general.pub.PubClz;
-import com.work.general.util.RedisStringUtil;
-import com.work.general.util.RedisUtil;
-import com.work.general.util.SerializaUtil;
+import com.work.general.redisservice.RedisStringUtil;
+import com.work.general.redisservice.RedisUtil;
 import com.work.general.util.TransUtil;
-import com.work.generaldb.model.TblMerchant;
 import com.work.payweb.service.combination.ali.AliService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -27,8 +24,6 @@ public class PayWebController extends PubClz{
     AliService aliService;
     @Autowired
     RedisUtil redisUtil;
-    @Autowired
-    RedisStringUtil redisStringUtil;
 
     @RequestMapping(value="/microPay")
     public String microPay(@RequestParam String params){
@@ -85,59 +80,5 @@ public class PayWebController extends PubClz{
         return null;
     }
 
-    @RequestMapping(value="/setRedis")
-    public String setRedis() throws UnsupportedEncodingException {
-//        redisStringUtil.setEx("key123","value123",60L, TimeUnit.SECONDS);
 
-//        redisStringUtil.sAdd("ss", "cc");
-//        redisStringUtil.sAdd("ss", "dd");
-//        redisStringUtil.sAdd("ss", "ddee");
-
-//        Map<String,String> map = new HashMap();
-//        map.put("xxxab:::abc1", "11");
-//        map.put("xxxab:::abc2", "12");
-//        map.put("xxxab:::abc3", "13");
-//        map.put("xxxab:::abc4", "14");
-//        redisStringUtil.multiSet(map);
-
-//        TblMerchant TblMerchant1 = new TblMerchant();
-//        TblMerchant1.setAddress("a");
-//        TblMerchant TblMerchant2 = new TblMerchant();
-//        TblMerchant2.setAddress("b");
-//        Map<String,Object> map = new HashMap();
-//        map.put("xxxab:::abc1", TblMerchant1);
-//        map.put("xxxab:::abc2", TblMerchant2);
-//        redisUtil.set("xxxab:::abc1", TblMerchant1);
-//        redisUtil.set("xxxab:::abc2", TblMerchant2);
-
-//        TblMerchant TblMerchant1 = new TblMerchant();
-//        TblMerchant1.setAddress("a");
-//        TblMerchant TblMerchant2 = new TblMerchant();
-//        TblMerchant2.setAddress("b");
-//        Map<String,String> map = new HashMap();
-//        map.put("xxxab:::abc1", SerializaUtil.serialize(TblMerchant1));
-//        map.put("xxxab:::abc2", SerializaUtil.serialize(TblMerchant2));
-//        redisStringUtil.multiSet(map);
-//        String str = redisStringUtil.get("xxxab:::abc1");
-//        TblMerchant t = (TblMerchant) SerializaUtil.deserialize(str);
-//        logger.info("ssssssss:"+t.toString());
-
-
-//        TblMerchant TblMerchant1 = new TblMerchant();
-//        TblMerchant1.setAddress("a");
-//        Map<String,String> map = new HashMap();
-//        map.put("xxxab:::abc1", SerializaUtil.serialize(TblMerchant1));
-//        logger.info(SerializaUtil.serialize(TblMerchant1));
-//        redisStringUtil.multiSet(map);
-//        String str = redisStringUtil.get("xxxab:::abc1");
-//        logger.info(str);
-//        logger.info(String.valueOf(str.equals(SerializaUtil.serialize(TblMerchant1))));
-//        TblMerchant t = (TblMerchant) SerializaUtil.deserialize(str);
-//        logger.info("ssssssss:"+t.toString());
-
-        redisStringUtil.expire("xxxab:::abc1",60L,TimeUnit.SECONDS);
-
-
-        return "success";
-    }
 }

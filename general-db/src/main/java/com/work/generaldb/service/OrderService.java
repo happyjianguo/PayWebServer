@@ -6,7 +6,7 @@ public interface OrderService {
 
     boolean insertOrder(TblOrder tblOrder);
 
-    TblOrder queryOrder(String merId);
+    TblOrder queryOrder(String txnSeqId);
 
     boolean updateOrder(TblOrder tblOrder);
 

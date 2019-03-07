@@ -1,9 +1,8 @@
 package com.work.general.aspect;
 
 import com.work.general.annotations.ExtCacheable;
-import com.work.general.annotations.TrackTime;
 import com.work.general.pub.PubClz;
-import com.work.general.util.RedisStringUtil;
+import com.work.general.redisservice.RedisStringUtil;
 import com.work.general.util.ReflectUtil;
 import com.work.general.util.SerializaUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,10 +10,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 @Aspect

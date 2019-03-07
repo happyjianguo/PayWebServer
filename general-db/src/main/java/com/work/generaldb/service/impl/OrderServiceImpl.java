@@ -19,8 +19,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public TblOrder queryOrder(String merId) {
-        return tblOrderMapper.selectByPrimaryKey(merId);
+    public TblOrder queryOrder(String txnSeqId) {
+        return tblOrderMapper.selectByPrimaryKey(txnSeqId);
     }
 
     @Override

@@ -12,7 +12,10 @@ public class HttpUtil {
 
 
 	public static void main(String[] args) throws Exception {
-		HttpUtil.httpRequest("http://127.0.0.1:9999/pay-web/setRedis","");
+//		String url = "http://127.0.0.1:9999/pay-web/setRedis";
+		String url = "http://127.0.0.1:9999/pay-web/redisLock";
+
+		HttpUtil.httpRequest(url,"");
 	}
 
 
@@ -157,7 +160,7 @@ public class HttpUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("http·µ»Ø£º"+buffer.toString());
 		return buffer.toString();
 	}
 

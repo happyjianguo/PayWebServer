@@ -35,7 +35,7 @@ spring:
       proxy-target-class: true
     redis:
         database: 0
-        host: 192.168.78.128
+        host: 192.168.61.129
         password:
         pool:
             max-active: 200
