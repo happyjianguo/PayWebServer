@@ -2,8 +2,8 @@ package com.work.serviceschedule.quartz;
 
 import com.work.general.annotations.ScheduledLock;
 import com.work.general.pub.PubClz;
-import com.work.general.redisservice.RedisLockService;
-import com.work.general.util.EnvironmentUtil;
+import com.work.general.service.redisservice.RedisLockService;
+import com.work.general.service.environment.EnvironmentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

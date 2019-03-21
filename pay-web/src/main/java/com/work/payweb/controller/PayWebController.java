@@ -2,8 +2,7 @@ package com.work.payweb.controller;
 
 import com.work.general.annotations.TrackTime;
 import com.work.general.pub.PubClz;
-import com.work.general.redisservice.RedisStringUtil;
-import com.work.general.redisservice.RedisUtil;
+import com.work.general.service.redisservice.RedisUtil;
 import com.work.general.util.TransUtil;
 import com.work.payweb.service.combination.ali.AliService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class PayWebController extends PubClz{

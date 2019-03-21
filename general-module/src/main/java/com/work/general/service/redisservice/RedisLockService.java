@@ -1,4 +1,4 @@
-package com.work.general.redisservice;
+package com.work.general.service.redisservice;
 
 import java.util.List;
 import java.util.UUID;

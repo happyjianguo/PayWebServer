@@ -1,14 +1,10 @@
-package com.work.general.redisservice;
+package com.work.general.service.redisservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.data.redis.serializer.SerializationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.io.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

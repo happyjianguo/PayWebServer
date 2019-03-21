@@ -5,6 +5,7 @@ import com.work.general.dicts.Dict;
 import com.work.general.parameters.InputParam;
 import com.work.general.parameters.OutputParam;
 import com.work.general.pub.PubClz;
+import com.work.general.service.idworker.SnowflakeIdWorker;
 import com.work.general.util.DateUtil;
 import com.work.general.util.StringUtil;
 import com.work.general.util.TransUtil;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -34,6 +36,7 @@ public class AliServiceImpl extends PubClz implements AliService{
     SeqService seqService;
     @Autowired
     AliMicroService aliMicroService;
+
 
 
     @Override
@@ -53,7 +56,7 @@ public class AliServiceImpl extends PubClz implements AliService{
         TblMerchant tblMerchant = merchantService.queryMerchant(merId);
         String subMerId = tblMerchant.getAliSubMerId();
         //订单入库
-        String txnSeqId = seqService.getSeqNextVal(DbConstants.SEQ.OrderSeq);
+        String txnSeqId = seqService.getOrderSeq();
         TblOrder tblOrder = new TblOrder();
         tblOrder.setTxnSeqId(txnSeqId);
         tblOrder.setTxnTime(DateUtil.getDateStr(DateUtil.YYYYMMDDHHMMSS));
@@ -83,8 +86,7 @@ public class AliServiceImpl extends PubClz implements AliService{
     @Override
     public String createMer(Map<String, String> map) {
         logger.info("商户新增请求报文:"+map.toString());
-        String seq = seqService.getSeqNextVal(DbConstants.SEQ.MerchantSeq);
-        String merId = "900" + DateUtil.getDateYYYYMMDD() + seq;
+        String merId = seqService.getMerSeq();
 
         map.put(Dict.merId, merId);
         InputParam inputParam = new InputParam();

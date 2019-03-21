@@ -14,7 +14,7 @@ public class AliPreCreateTest {
 	public void SocketReq() throws Exception {
 
 		Map<String,String> mapAliPreCreate = AliPreCreate.getData();
-		mapAliPreCreate.put(Dict.merId,"900201811291000077");
+		mapAliPreCreate.put(Dict.merId,"900201903211000094");
 		HttpUtil.httpRequest(PropertyUtil.getProperty(Dict.prePay),mapAliPreCreate);
 
 

@@ -9,27 +9,27 @@ server:
 spring:
     application:
         name: pay-web
-    datasource:
-        name: test
-        url: jdbc:mysql://192.168.61.129:3306/mytest?useUnicode=true&characterEncoding=utf8
-        username: root
-        password: 123
-        # 使用druid数据源
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        filters: stat
-        maxActive: 20
-        initialSize: 1
-        maxWait: 60000
-        minIdle: 1
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxOpenPreparedStatements: 20
+#    datasource:
+#        name: test
+#        url: jdbc:mysql://192.168.61.129:3306/mytest?useUnicode=true&characterEncoding=utf8
+#        username: root
+#        password: 123
+#        # 使用druid数据源
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        filters: stat
+#        maxActive: 20
+#        initialSize: 1
+#        maxWait: 60000
+#        minIdle: 1
+#        timeBetweenEvictionRunsMillis: 60000
+#        minEvictableIdleTimeMillis: 300000
+#        validationQuery: select 'x'
+#        testWhileIdle: true
+#        testOnBorrow: false
+#        testOnReturn: false
+#        poolPreparedStatements: true
+#        maxOpenPreparedStatements: 20
     aop:
       auto: true
       proxy-target-class: true
@@ -79,3 +79,29 @@ hystrix:
           isolation:
             thread:
               timeoutInMilliseconds: 90000
+
+#shardingjdbc配置
+sharding:
+  jdbc:
+    data-sources:
+      ###主数据库配置   名称随便起
+      ds_master:
+        jdbc-url: jdbc:mysql://192.168.61.129:3306/fk_db_1?useUnicode=true&characterEncoding=utf8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: 123
+      ###配置第一个从数据库 名称随便起
+      ds_slave_0:
+        jdbc-url: jdbc:mysql://192.168.61.129:3306/fk_db_2?useUnicode=true&characterEncoding=utf8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: 123
+    ###配置读写分离
+    master-slave-rule:
+      ###配置从库选择策略，提供轮询与随机，这里选择用轮询 如果从做了集群 查询时候做轮训查询
+      load-balance-algorithm-type: round_robin
+      ####指定主数据库
+      master-data-source-name: ds_master
+      ####指定从数据库 如果多个从 用逗号隔开
+      slave-data-source-names: ds_slave_0
+      name: ds_ms

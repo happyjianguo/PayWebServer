@@ -2,9 +2,9 @@ package com.work.payweb.controller;
 
 import com.work.general.annotations.TrackTime;
 import com.work.general.pub.PubClz;
-import com.work.general.redisservice.RedisLockService;
-import com.work.general.redisservice.RedisStringUtil;
-import com.work.general.util.EnvironmentUtil;
+import com.work.general.service.redisservice.RedisLockService;
+import com.work.general.service.redisservice.RedisStringUtil;
+import com.work.general.service.environment.EnvironmentUtil;
 import com.work.generaldb.model.TblOrder;
 import com.work.generaldb.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.work.general.util;
+package com.work.general.service.environment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

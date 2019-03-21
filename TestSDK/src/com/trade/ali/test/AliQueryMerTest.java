@@ -18,7 +18,7 @@ public class AliQueryMerTest {
 
 
 		Map<String,String> mapAliQueryMer = AliQueryMer.getData();
-		mapAliQueryMer.put(Dict.merId, "900201811291000077");
+		mapAliQueryMer.put(Dict.merId, "900201903211000094");
 		HttpUtil.httpRequest(PropertyUtil.getProperty(Dict.queryMer),mapAliQueryMer);
 	}
 	
