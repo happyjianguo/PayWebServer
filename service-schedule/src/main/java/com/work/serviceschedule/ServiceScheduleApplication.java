@@ -9,8 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
-@EnableEurekaClient
-@EnableFeignClients
+//@EnableFeignClients
 @MapperScan("com.work.generaldb.mapper")
 @ComponentScan(basePackages = {"com.work.*"})
 @SpringBootApplication

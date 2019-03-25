@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class SeqServiceImpl implements SeqService {
     @Autowired
     SequenceMapper sequenceMapper;
-    @Autowired
-    SnowflakeIdWorker snowflakeIdWorker;
+//    @Autowired
+//    SnowflakeIdWorker snowflakeIdWorker;
 
 
     private String getSeqNextVal(String seqName) {

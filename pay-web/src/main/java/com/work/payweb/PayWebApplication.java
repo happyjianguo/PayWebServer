@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 @EnableCaching
-@EnableFeignClients
+//@EnableFeignClients
 @MapperScan("com.work.generaldb.mapper")
 @ComponentScan(basePackages = {"com.work.*"})
 @SpringBootApplication
