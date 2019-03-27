@@ -9,6 +9,7 @@ public class RibbonConfig {
 
     @Bean
     public IRule ribbonRule(){
+        //必须关闭熔断器才能生效
         return new GrayRibbonRule();
     }
 
