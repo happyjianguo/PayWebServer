@@ -56,6 +56,7 @@ public class HttpUtil {
 			httpURLConnection.setRequestMethod("POST");
 			httpURLConnection.setConnectTimeout(30000);
 			httpURLConnection.setReadTimeout(300000);
+			httpURLConnection.setRequestProperty("gray_mark","enable");
 			httpURLConnection.connect();
 			// 连接，从上述第2条中url.openConnection()至此的配置必须要在connect之前完成
 			httpURLConnection.connect();

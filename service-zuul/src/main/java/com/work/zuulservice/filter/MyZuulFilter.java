@@ -1,28 +1,23 @@
-package com.work.zuulservice;
+package com.work.zuulservice.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.http.HttpServletRequestWrapper;
 import com.netflix.zuul.http.ServletInputStreamWrapper;
-import com.work.general.dicts.Dict;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
-import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StreamUtils;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URLDecoder;
-import java.nio.charset.Charset;
-import java.util.*;
+import java.util.Enumeration;
 
 @Component
 public class MyZuulFilter extends ZuulFilter {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public String filterType() {
@@ -39,7 +34,6 @@ public class MyZuulFilter extends ZuulFilter {
         return true;
     }
 
-
         public Object run() {
 
             RequestContext ctx = RequestContext.getCurrentContext();
@@ -53,7 +47,7 @@ public class MyZuulFilter extends ZuulFilter {
                     String paraName = (String) enu.nextElement();
                     json.put(paraName, request.getParameter(paraName));
                 }
-
+                logger.info("参数："+json.toString());
                 final byte[] reqBodyBytes = json.toString().getBytes("UTF-8");
                 ctx.setRequest(new HttpServletRequestWrapper(request) {
                     @Override
