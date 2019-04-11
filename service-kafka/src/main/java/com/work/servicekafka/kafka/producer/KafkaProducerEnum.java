@@ -33,11 +33,11 @@ public enum KafkaProducerEnum {
         //消息发送后确认机制
         properties.put("acks", "all");
         //生产者阻塞时间
-        properties.put("max.block.ms", "300");
+        properties.put("max.block.ms", "3000");
         //请求超时时间
-        properties.put("request.timeout.ms", "300");
+        properties.put("request.timeout.ms", "3000");
         //metadata时间
-        properties.put("metadata.fetch.timeout.ms", "300");
+        properties.put("metadata.fetch.timeout.ms", "3000");
 
         kafkaProducer= new KafkaProducer<String,String>(properties);
 	}
