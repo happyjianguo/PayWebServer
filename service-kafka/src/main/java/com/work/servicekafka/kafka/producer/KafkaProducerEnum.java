@@ -36,7 +36,9 @@ public enum KafkaProducerEnum {
         properties.put("max.block.ms", "300");
         //请求超时时间
         properties.put("request.timeout.ms", "300");
-		
+        //metadata时间
+        properties.put("metadata.fetch.timeout.ms", "300");
+
         kafkaProducer= new KafkaProducer<String,String>(properties);
 	}
 	
