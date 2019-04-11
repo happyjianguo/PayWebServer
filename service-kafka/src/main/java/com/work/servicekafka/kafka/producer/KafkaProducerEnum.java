@@ -47,7 +47,9 @@ public enum KafkaProducerEnum {
 			//1.通过回调来处理返回消息，可增加吞吐量,还可以设置重发以及重发次数
 			ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>("test_xkl_r2p2",data);
 			kafkaProducer.send(producerRecord,new ProducerCallback(producerRecord, 1));
-			
+			kafkaProducer.flush();
+			return true;
+
 			//2.同步判断返回消息，性能较差
 //			ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>("ewm-order-info_r3p3",data);
 //			Future<RecordMetadata> future = kafkaProducer.send(producerRecord);
@@ -55,8 +57,8 @@ public enum KafkaProducerEnum {
 //			long offset = recordMetadata.offset();
 //			int partition = recordMetadata.partition();
 //			logger.info("kafka发送消息成功,offset："+offset+",partition:"+partition);
-			kafkaProducer.flush();
-			return true;
+//			return true;
+
 		} catch (Exception e) {
 			logger.error("发送kafka异常"+e.getMessage(),e);
 			return false;
