@@ -71,23 +71,23 @@ public class MatrixToImageWriter {
 				throw new IOException("file not find !");
 			}
 			/**
-			 * ��ȡ��ά��ͼƬ����������ͼ����
+			 * 读取二维码图片，并构建绘图对象
 			 */
 			Graphics2D g = image.createGraphics();
 
 			/**
-			 * ��ȡLogoͼƬ
+			 * 读取Logo图片
 			 */
 			BufferedImage logo = ImageIO.read(logoPic);
 
 			int widthLogo = image.getWidth() / logoConfig.getLogoPart();
-			int heightLogo = image.getWidth() / logoConfig.getLogoPart(); // ���ֶ�ά���������ε�
+			int heightLogo = image.getWidth() / logoConfig.getLogoPart(); // 保持二维码是正方形的
 
-			// ����ͼƬ����λ��
+			// 计算图片放置位置
 			int x = (image.getWidth() - widthLogo) / 2;
 			int y = (image.getHeight() - heightLogo) / 2;
 
-			// ��ʼ����ͼƬ
+			// 开始绘制图片
 			g.drawImage(logo, x, y, widthLogo, heightLogo, null);
 			g.drawRoundRect(x, y, widthLogo, heightLogo, 10, 10);
 			g.setStroke(new BasicStroke(logoConfig.getBorder()));
@@ -103,13 +103,13 @@ public class MatrixToImageWriter {
 	}
 
 	/**
-	 * @ΪͼƬ�������
+	 * @为图片添加文字
 	 * @param pressText
-	 *            ����
+	 *            文字
 	 * @param newImg
-	 *            �����ֵ�ͼƬ
+	 *            带文字的图片
 	 * @param targetImg
-	 *            ��Ҫ������ֵ�ͼƬ
+	 *            需要添加文字的图片
 	 * @param fontStyle
 	 * @param color
 	 * @param fontSize
@@ -117,18 +117,18 @@ public class MatrixToImageWriter {
 	 * @param heigh
 	 */
 	public static void pressText(String pressText, String newImg, BufferedImage image, int fontStyle, Color color,
-			int fontSize, int width, int height) {
+								 int fontSize, int width, int height) {
 
-		// //�������ֿ�ʼ��λ��
-		// //x��ʼ��λ�ã���ͼƬ���-�����С*�ֵĸ�����/2
+		// //计算文字开始的位置
+		// //x开始的位置：（图片宽度-字体大小*字的个数）/2
 		// int startX = (width-(fontSize*pressText.length()))/2;
-		// //y��ʼ��λ�ã�ͼƬ�߶�-��ͼƬ�߶�-ͼƬ��ȣ�/2
+		// //y开始的位置：图片高度-（图片高度-图片宽度）/2
 		// int startY = height-(height-width)/2;
 
-		// �������ֿ�ʼ��λ��
-		// x��ʼ��λ�ã���ͼƬ���-�����С*�ֵĸ�����/2
+		// 计算文字开始的位置
+		// x开始的位置：（图片宽度-字体大小*字的个数）/2
 		int startX = (width - (fontSize * pressText.length())) - 50;
-		// y��ʼ��λ�ã�ͼƬ�߶�-��ͼƬ�߶�-ͼƬ��ȣ�/2
+		// y开始的位置：图片高度-（图片高度-图片宽度）/2
 		int startY = height - (height - width) / 2;
 
 		try {
@@ -137,7 +137,7 @@ public class MatrixToImageWriter {
 			Graphics g = image.createGraphics();
 			g.drawImage(image, 0, 0, imageW, imageH, null);
 			g.setColor(color);
-			g.setFont(new Font("����", fontStyle, fontSize));
+			g.setFont(new Font("宋体", fontStyle, fontSize));
 			g.drawString(pressText, startX, startY);
 			g.dispose();
 
@@ -153,11 +153,11 @@ public class MatrixToImageWriter {
 	}
 
 	static class LogoConfig {
-		// logoĬ�ϱ߿���ɫ
+		// logo默认边框颜色
 		public static final Color DEFAULT_BORDERCOLOR = Color.WHITE;
-		// logoĬ�ϱ߿���
+		// logo默认边框宽度
 		public static final int DEFAULT_BORDER = 2;
-		// logo��СĬ��Ϊ��Ƭ��1/6
+		// logo大小默认为照片的1/6
 		public static final int DEFAULT_LOGOPART = 4;
 
 		private final int border = DEFAULT_BORDER;
@@ -190,158 +190,158 @@ public class MatrixToImageWriter {
 		}
 
 	}
-	
-	
+
+
 	/**
-	 * ֻ���ɶ�ά��
+	 * 只生成二维码
 	 */
 	public static void M1() {
-	       try {
-	            //��ά���ʾ������
-	            String content = "http://www.cnblogs.com/";
-				// Ŀ���ļ�
-				String targetImage = "D:/M1.jpg";
+		try {
+			//二维码表示的内容
+			String content = "http://www.cnblogs.com/";
+			// 目标文件
+			String targetImage = "D:/M1.jpg";
 
-	            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+			MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
-	            @SuppressWarnings("rawtypes")
-	            Map hints = new HashMap();
-	            
-	            //����UTF-8�� ��ֹ��������
-	            hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-	            //���ö�ά�����ܰ�ɫ����Ĵ�С
-	            hints.put(EncodeHintType.MARGIN,1);
-	            //���ö�ά����ݴ���
-	            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H); 
-	            
-	            //width:ͼƬ�����Ŀ�;height:ͼƬ�����ĸ�
-	            //��ΪҪ�ڶ�ά���·��������֣����԰�ͼƬ����Ϊ�����Σ��ߴ��ڿ�
-	            int width = 400;
-	            int height = 450;
-	            
-	            //����ά�룬�ǵõ���multiFormatWriter.encode()ʱ���Ҫ����hints��������Ȼ����������Ч
-	            BitMatrix bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, width, height, hints);
-	            
-	            //qrcFile����������ɵĶ�ά��ͼƬ����logo�������֣�
-	            File qrcFile = new File(targetImage);
-	            
-	            //��ʼ����ά��
-	            MatrixToImageWriter.writeToFile(bitMatrix, "jpg", qrcFile);
+			@SuppressWarnings("rawtypes")
+			Map hints = new HashMap();
+
+			//设置UTF-8， 防止中文乱码
+			hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+			//设置二维码四周白色区域的大小
+			hints.put(EncodeHintType.MARGIN,1);
+			//设置二维码的容错性
+			hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+
+			//width:图片完整的宽;height:图片完整的高
+			//因为要在二维码下方附上文字，所以把图片设置为长方形（高大于宽）
+			int width = 400;
+			int height = 450;
+
+			//画二维码，记得调用multiFormatWriter.encode()时最后要带上hints参数，不然上面设置无效
+			BitMatrix bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, width, height, hints);
+
+			//qrcFile用来存放生成的二维码图片（无logo，无文字）
+			File qrcFile = new File(targetImage);
+
+			//开始画二维码
+			MatrixToImageWriter.writeToFile(bitMatrix, "jpg", qrcFile);
 
 
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	/**
-	 * ��ά��+logo
+	 * 二维码+logo
 	 */
 	public static void M2() {
-	       try {
-	            //��ά���ʾ������
-	            String content = "http://www.cnblogs.com/";
-				// logo��ַ
-				String logopath = "D:/logo.jpg";
-				// Ŀ���ļ�
-				String targetImage = "D:/M2.jpg";
-				
-				
-	            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+		try {
+			//二维码表示的内容
+			String content = "http://www.cnblogs.com/";
+			// logo地址
+			String logopath = "D:/logo.jpg";
+			// 目标文件
+			String targetImage = "D:/M2.jpg";
 
-	            @SuppressWarnings("rawtypes")
-	            Map hints = new HashMap();
-	            
-	            //����UTF-8�� ��ֹ��������
-	            hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-	            //���ö�ά�����ܰ�ɫ����Ĵ�С
-	            hints.put(EncodeHintType.MARGIN,1);
-	            //���ö�ά����ݴ���
-	            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H); 
-	            
-	            //width:ͼƬ�����Ŀ�;height:ͼƬ�����ĸ�
-	            //��ΪҪ�ڶ�ά���·��������֣����԰�ͼƬ����Ϊ�����Σ��ߴ��ڿ�
-	            int width = 400;
-	            int height = 450;
-	            
-	            //����ά�룬�ǵõ���multiFormatWriter.encode()ʱ���Ҫ����hints��������Ȼ����������Ч
-	            BitMatrix bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, width, height, hints);
-	            
-	            //logoFile������Ŵ���logo�Ķ�ά��ͼƬ����ά��+logo�������֣�
-	            File logoFile = new File(logopath);
-	            
-	            //��ʼ����ά��
-	            BufferedImage barCodeImage = MatrixToImageWriter.writeToFile(bitMatrix, "jpg");
 
-	            //�ڶ�ά���м���ͼƬ
-	            LogoConfig logoConfig = new LogoConfig(); //LogoConfig������Logo������
-	            BufferedImage image = addLogo_QRCode(barCodeImage, logoFile, logoConfig);
-	            ImageIO.write(image, "jpeg", new File(targetImage));
-	    
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+			MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+
+			@SuppressWarnings("rawtypes")
+			Map hints = new HashMap();
+
+			//设置UTF-8， 防止中文乱码
+			hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+			//设置二维码四周白色区域的大小
+			hints.put(EncodeHintType.MARGIN,1);
+			//设置二维码的容错性
+			hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+
+			//width:图片完整的宽;height:图片完整的高
+			//因为要在二维码下方附上文字，所以把图片设置为长方形（高大于宽）
+			int width = 400;
+			int height = 450;
+
+			//画二维码，记得调用multiFormatWriter.encode()时最后要带上hints参数，不然上面设置无效
+			BitMatrix bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, width, height, hints);
+
+			//logoFile用来存放带有logo的二维码图片（二维码+logo，无文字）
+			File logoFile = new File(logopath);
+
+			//开始画二维码
+			BufferedImage barCodeImage = MatrixToImageWriter.writeToFile(bitMatrix, "jpg");
+
+			//在二维码中加入图片
+			LogoConfig logoConfig = new LogoConfig(); //LogoConfig中设置Logo的属性
+			BufferedImage image = addLogo_QRCode(barCodeImage, logoFile, logoConfig);
+			ImageIO.write(image, "jpeg", new File(targetImage));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	/**
-	 * ��ά��+logo+�±�����
+	 * 二维码+logo+下标文字
 	 */
 	public static void M3() {
 		try {
-			// ��ά���ʾ������
+			// 二维码表示的内容
 			String content = "http://www.cnblogs.com/";
-			// logo��ַ
+			// logo地址
 			String logopath = "D:/logo.jpg";
-			// Ŀ���ļ�
+			// 目标文件
 			String targetImage = "D:/M3.jpg";
-			// ������ͼƬ�ϵ�������Ϣ
+			// 附加在图片上的文字信息
 			String text = "123123123";
-			
+
 			MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
 			Map hints = new HashMap();
 
-			// ����UTF-8�� ��ֹ��������
+			// 设置UTF-8， 防止中文乱码
 			hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-			// ���ö�ά�����ܰ�ɫ����Ĵ�С
+			// 设置二维码四周白色区域的大小
 			hints.put(EncodeHintType.MARGIN, 1);
-			// ���ö�ά����ݴ���
+			// 设置二维码的容错性
 			hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 
-			// width:ͼƬ�����Ŀ�;height:ͼƬ�����ĸ�
-			// ��ΪҪ�ڶ�ά���·��������֣����԰�ͼƬ����Ϊ�����Σ��ߴ��ڿ�
+			// width:图片完整的宽;height:图片完整的高
+			// 因为要在二维码下方附上文字，所以把图片设置为长方形（高大于宽）
 			int width = 400;
 			int height = 450;
 
-			// ����ά�룬�ǵõ���multiFormatWriter.encode()ʱ���Ҫ����hints��������Ȼ����������Ч
+			// 画二维码，记得调用multiFormatWriter.encode()时最后要带上hints参数，不然上面设置无效
 			BitMatrix bitMatrix = multiFormatWriter.encode(content, BarcodeFormat.QR_CODE, width, height, hints);
 
-			// logoͼƬ·��
+			// logo图片路径
 			File logoFile = new File(logopath);
 
-			// ��ʼ����ά��
+			// 开始画二维码
 			BufferedImage barCodeImage = MatrixToImageWriter.writeToFile(bitMatrix, "jpg");
 
-			// �ڶ�ά���м���ͼƬ
-			LogoConfig logoConfig = new LogoConfig(); // LogoConfig������Logo������
+			// 在二维码中加入图片
+			LogoConfig logoConfig = new LogoConfig(); // LogoConfig中设置Logo的属性
 			BufferedImage image = addLogo_QRCode(barCodeImage, logoFile, logoConfig);
 
-			int font = 25; // �����С
-			int fontStyle = 1; // ������
+			int font = 25; // 字体大小
+			int fontStyle = 1; // 字体风格
 
-			// �ڶ�ά���·�������֣����־��У�
+			// 在二维码下方添加文字（文字居中）
 			pressText(text, targetImage, image, fontStyle, Color.BLACK, font, width, height);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		//ֻ���ɶ�ά��
+		//只生成二维码
 		MatrixToImageWriter.M1();
-		//��ά��+logo
+		//二维码+logo
 		MatrixToImageWriter.M2();
-		//��ά��+logo+�±�����
+		//二维码+logo+下标文字
 		MatrixToImageWriter.M3();
 	}
 
