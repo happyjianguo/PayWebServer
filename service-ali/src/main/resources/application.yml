@@ -11,5 +11,5 @@ spring:
     proxy-target-class: true
 
 server:
-  port: 7002
+  port: 7001
 
